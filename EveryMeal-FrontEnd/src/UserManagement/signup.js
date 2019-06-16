@@ -16,11 +16,7 @@ import Container from '@material-ui/core/Container';
 function MadeWithLove() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Built with love by the '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Material-UI
-      </Link>
-      {' team.'}
+      
     </Typography>
   );
 }

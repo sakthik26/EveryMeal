@@ -2,18 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import {Route, Link, BrowserRouter as Router} from "react-router-dom";
 import Signup from './UserManagement/signup'
+import configureStore from './Store/configureStore';
 
+const store = configureStore();
 
 const routing = (
+  <Provider store={store}>
     <Router>
       <div>
         <Route exact path="/" component= {App} />
         <Route path="/signup" component= {Signup} />
       </div>
     </Router>
+  </Provider>
 )
 
 ReactDOM.render(routing, document.getElementById('root'));
