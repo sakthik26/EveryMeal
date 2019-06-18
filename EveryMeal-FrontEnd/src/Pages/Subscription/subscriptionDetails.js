@@ -22,7 +22,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import './breakfast.css';
-import TabContainer from '../Components/TabContainer/tabcontainer.js'
+import TabContainer from '../../Components/TabContainer/tabcontainer.js'
 
 
 export default class SubscriptionDetails extends React.Component{
