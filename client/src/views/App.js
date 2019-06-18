@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import logo from './Images/everyMealLogo.png';
+import logo from '../assets/images/everyMealLogo.png';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -10,9 +10,17 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import SignUp from './UserManagement/signup.js';
-import TabContainer from './Components/TabContainer/tabcontainer.js'
-import './App.css';
+import SignUp from './Signup.js';
+
+
+/* Defining the basic layout of the application */
+function TabContainer(props) {
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {props.children}
+    </Typography>
+  );
+}
 
 
 /* Defining the basic layout of the application */
