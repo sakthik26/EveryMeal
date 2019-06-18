@@ -4,8 +4,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Page from '../components/Page';
 
 const styles = theme => ({
     main: {
@@ -17,10 +16,7 @@ export class Dashboard extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <div>
-                <Header />
-
-                <Grid className={classes.main} container spacing={2}>
+                <Page>
                     <Grid item xs={12}>
                         <h1>Food Consumption</h1>
                     </Grid>
@@ -32,11 +28,7 @@ export class Dashboard extends React.Component {
                     <Grid item md={6}>
                         <h1>Micronutrients</h1>
                     </Grid>
-
-                </Grid>
-
-                <Footer />
-            </div>
+                </Page>
         );
 
     }
