@@ -11,22 +11,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import SignUp from './UserManagement/signup.js';
-
-
+import TabContainer from './Components/TabContainer/tabcontainer.js'
 import './App.css';
+
+
 /* Defining the basic layout of the application */
-function TabContainer(props) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
-
-TabContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
 const useStyles = makeStyles(theme => ({
   appbar:{
     backgroundColor: '#FFFF',
