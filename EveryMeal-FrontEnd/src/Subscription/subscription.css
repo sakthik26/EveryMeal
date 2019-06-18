@@ -1,0 +1,16 @@
+.root{
+    flex-grow: 1
+}
+
+.root .eatnow, .root .subscribe{
+     min-width: 100%;
+     max-width: 100%
+}
+
+.root .subscriptionSessions .subscriptionTitle{
+    font-weight: bold;
+}
+
+.root .subscriptionSessions{
+    padding: 1%;
+}

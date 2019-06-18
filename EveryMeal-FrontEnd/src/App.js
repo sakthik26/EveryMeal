@@ -12,6 +12,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import SignUp from './UserManagement/signup.js';
 import TabContainer from './Components/TabContainer/tabcontainer.js'
+import Subscription from './Subscription/subscription.js'
 import './App.css';
 
 
@@ -55,8 +56,7 @@ function App() {
        </Toolbar>
       </AppBar>
       {value === 0 && <TabContainer>Eat Now</TabContainer>}
-      {value === 1 && <TabContainer>Subscribe</TabContainer>}
-     
+      {value === 1 && <TabContainer><Subscription/></TabContainer>}
     </div>
   );
 }

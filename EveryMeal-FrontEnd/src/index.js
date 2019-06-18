@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import {Route, Link, BrowserRouter as Router} from "react-router-dom";
 import Signup from './UserManagement/signup'
 import configureStore from './Store/configureStore';
+import SubscriptionDetails from './Subscription/subscriptionDetails'
 
 const store = configureStore();
 
@@ -16,6 +17,7 @@ const routing = (
       <div>
         <Route exact path="/" component= {App} />
         <Route path="/signup" component= {Signup} />
+        <Route path="/details" component= {SubscriptionDetails} />
       </div>
     </Router>
   </Provider>
