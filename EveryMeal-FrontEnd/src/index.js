@@ -5,9 +5,9 @@ import App from './App';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import {Route, Link, BrowserRouter as Router} from "react-router-dom";
-import Signup from './UserManagement/signup'
+import Signup from './Pages/UserManagement/signup'
 import configureStore from './Store/configureStore';
-import SubscriptionDetails from './Subscription/subscriptionDetails'
+import SubscriptionDetails from './Pages/Subscription/subscriptionDetails'
 
 const store = configureStore();
 

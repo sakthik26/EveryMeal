@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import SignUp from './UserManagement/signup.js';
+import SignUp from './Pages/UserManagement/signup.js';
 import TabContainer from './Components/TabContainer/tabcontainer.js'
 import Subscription from './Pages/Subscription/subscription.js'
 import './App.css';
