@@ -1,3 +1,4 @@
+"use strict";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -5,8 +6,9 @@ import App from './App';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import {Route, Link, BrowserRouter as Router} from "react-router-dom";
-import Signup from './UserManagement/signup'
-import configureStore from './Store/configureStore';
+import Signup from './views/Signup'
+import configureStore from './store/ConfigureStore';
+import Dashboard from './views/Dashboard';
 
 const store = configureStore();
 
@@ -16,6 +18,7 @@ const routing = (
       <div>
         <Route exact path="/" component= {App} />
         <Route path="/signup" component= {Signup} />
+        <Route path="/dashboard" component= {Dashboard} />
       </div>
     </Router>
   </Provider>
