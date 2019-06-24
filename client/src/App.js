@@ -14,6 +14,7 @@ import Tab from '@material-ui/core/Tab';
 import SignUp from './views/Signup.js';
 import TabContainer from './components/tabcontainer/TabContainer.js'
 import './App.css';
+import Subscription from './views/subscription/Subscription'
 
 
 /* Defining the basic layout of the application */
@@ -56,7 +57,7 @@ function App() {
        </Toolbar>
       </AppBar>
       {value === 0 && <TabContainer>Eat Now</TabContainer>}
-      {value === 1 && <TabContainer>Subscribe</TabContainer>}
+      {value === 1 && <TabContainer><Subscription /></TabContainer>}
      
     </div>
   );
