@@ -8,7 +8,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { withStyles } from '@material-ui/core/styles';
 
 import Page from '../components/page/Page';
-import BarChart from '../components/charts/BarChart';
+import ConsumptionGraph from '../components/consumptionGraph/Chart';
 
 const styles = theme => ({
     main: {
@@ -28,7 +28,7 @@ export class Dashboard extends React.Component {
 
                         <Grid item>
                             <Box my={5}>
-                                <BarChart></BarChart>
+                                <ConsumptionGraph />
                             </Box>
                         </Grid>
                         <Grid item>
