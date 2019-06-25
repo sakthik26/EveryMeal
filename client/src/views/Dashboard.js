@@ -8,8 +8,10 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { withStyles } from '@material-ui/core/styles';
 
 import Page from '../components/page/Page';
-import ConsumptionGraph from '../components/consumptionGraph/Chart';
+import ConsumptionGraph from '../components/charts/Chart';
 import Select from '../components/buttons/SimpleSelect';
+import AddMealButton from '../components/buttons/DialogButton';
+import ProgressCircle from '../components/charts/ProgressCircle';
 
 const styles = theme => ({
     main: {
@@ -38,7 +40,7 @@ export class Dashboard extends React.Component {
                             </Box>
                         </Grid>
                         <Grid item>
-                            <Button size="small" variant="contained" >+ Add meal</Button>
+                            <AddMealButton label="+ Add meal"/>
                         </Grid>
                     </Grid>
 
