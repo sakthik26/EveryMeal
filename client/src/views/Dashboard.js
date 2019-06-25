@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Page from '../components/page/Page';
 import ConsumptionGraph from '../components/consumptionGraph/Chart';
+import Select from '../components/buttons/SimpleSelect';
 
 const styles = theme => ({
     main: {
@@ -20,6 +21,9 @@ export class Dashboard extends React.Component {
     render() {
         const { classes } = this.props;
 
+        //TODO: Change months such that it reflects month available in api response
+        const months = [{ id: 201906, name: "June 2019" }, { id: 201905, name: "May 2019" }, { id: 201904, name: "April 2019" }, { id: 201903, name: "March 2019" }]
+
         return (
             <Page>
                 <Grid className={classes.main} container spacing={2}>
@@ -28,6 +32,8 @@ export class Dashboard extends React.Component {
 
                         <Grid item>
                             <Box my={5}>
+                                {/*TODO: Pass propper onchange function such that api call for graph gets updated*/}
+                                <Select months={months} />
                                 <ConsumptionGraph />
                             </Box>
                         </Grid>
