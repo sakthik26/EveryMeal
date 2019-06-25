@@ -49,15 +49,15 @@ function App() {
        <Toolbar> 
           <img className={classes.logo} src={logo} alt="logo" />
             <Tabs className={classes.tabs} value={value} onChange={handleChange}>
-              <Tab label="Eat Now" />
-              <Tab label="Subscribe" />
+              <Tab label="Eat" />
+              <Tab label="Diet Consultation" />
             </Tabs>
           <Button>Sign Up</Button>
           <Button>Login</Button>
        </Toolbar>
       </AppBar>
-      {value === 0 && <TabContainer>Eat Now</TabContainer>}
-      {value === 1 && <TabContainer><Subscription /></TabContainer>}
+      {value === 0 && <TabContainer><Subscription/></TabContainer>}
+      {value === 1 && <TabContainer>Diet Consultation</TabContainer>}
      
     </div>
   );

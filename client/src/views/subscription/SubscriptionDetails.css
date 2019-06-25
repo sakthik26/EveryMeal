@@ -31,3 +31,7 @@ div.details-upcoming-meals{
     max-width: 400px;
     height: 150px;
 }
+
+.filter-button{
+    text-align: right;
+}

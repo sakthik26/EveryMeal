@@ -35,8 +35,8 @@ export default class Breakfast extends React.Component{
     render(){
         return(
             <div className="breakfastParent">
-                <Grid container spacing={3}>
-                    <Grid item xs={2} style={{cursor:'pointer'}}>
+                <Grid container justify='center' spacing={3}>
+                    <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
                         <img className="breakfast" src={breakfast_image1} alt="bf1" />
                         <Typography>
                         <span>Starting:</span>
@@ -44,7 +44,7 @@ export default class Breakfast extends React.Component{
                          
                         </Typography>
                     </Grid>
-                    <Grid item xs={2} style={{cursor:'pointer'}}>
+                    <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
                         <img className="breakfast" src={breakfast_image2} alt="bf2" />
                         <Typography>
                         <span>Starting:</span>
@@ -52,7 +52,7 @@ export default class Breakfast extends React.Component{
                          
                         </Typography>
                     </Grid>
-                    <Grid item xs={2} style={{cursor:'pointer'}}>
+                    <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
                         <img className="breakfast" src={breakfast_image3} alt="bf3" />
                         <Typography>
                         <span>Starting:</span>
@@ -60,7 +60,7 @@ export default class Breakfast extends React.Component{
                          
                         </Typography>
                     </Grid>
-                    <Grid item xs={2} style={{cursor:'pointer'}}>
+                    <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
                         <img className="breakfast" src={breakfast_image3} alt="bf4" />
                         <Typography>
                         <span>Starting:</span>

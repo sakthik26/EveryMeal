@@ -17,7 +17,7 @@ const routing = (
   <Provider store={store}>
     <Router>
       <div>
-        <Route path="/" component= {App} />
+        <Route exact path="/" component= {App} />
         <Route path="/signup" component= {Signup} />
         <Route path="/dashboard" component= {Dashboard} />
         <Route exact path="/details" component= {SubscriptionDetails} />

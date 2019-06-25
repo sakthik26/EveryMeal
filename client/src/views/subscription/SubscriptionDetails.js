@@ -43,7 +43,7 @@ export default class SubscriptionDetails extends React.Component{
     render(){
         return(
             <div>
-             <Grid className='details-grid-parent' container justify='center' spacing={3}>
+             <Grid className='details-grid-parent' container justify='center' spacing={2}>
                     <Grid item className='details-grid-item' xs={8} sm={5}>
                         <img className="sub-detail" src={SubscriptionDetail} alt="SubscriptionDetail" />
                     </Grid>
