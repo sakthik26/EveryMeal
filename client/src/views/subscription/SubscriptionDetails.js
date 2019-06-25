@@ -25,6 +25,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Radio from '@material-ui/core/Radio';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+import Header from '../../components/header/Header';
+import breakfast_image1 from '../../images/Breakfast_option1.png'
+import breakfast_image2 from '../../images/Breakfast_option2.png'
+import breakfast_image3 from '../../images/Breakfast_option3.png'
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 
 
 
@@ -43,11 +48,21 @@ export default class SubscriptionDetails extends React.Component{
     render(){
         return(
             <div>
+            <Header/>
              <Grid className='details-grid-parent' container justify='center' spacing={2}>
-                    <Grid item className='details-grid-item' xs={8} sm={5}>
+                    <Grid item className='details-grid-item' xs={8} sm={4}>
                         <img className="sub-detail" src={SubscriptionDetail} alt="SubscriptionDetail" />
                     </Grid>
-                    <Grid item xs={8} sm={4} >
+                    <Grid item xs={8} sm={5} >
+                        <Breadcrumbs separator="›" aria-label="Breadcrumb">
+                            <Link color="inherit" href="/">
+                                Home
+                            </Link>
+                            <Link color="inherit" href="">
+                                Subscriptions
+                            </Link>
+                            
+                        </Breadcrumbs>
                         <Typography component="h1" variant="h4">
                           Power Breakfast Veg
                         </Typography>
@@ -108,7 +123,7 @@ export default class SubscriptionDetails extends React.Component{
              <Grid className='' container justify='center' spacing={3}>
                     <Grid item className='' xs={8} sm={5}>
                         <Typography component="h1" variant="h6">
-                            Upcoming meals
+                            Upcoming meals for the week
                         </Typography>
                     </Grid>
                     <Grid item className='' xs={8} sm={4}>
@@ -120,11 +135,11 @@ export default class SubscriptionDetails extends React.Component{
                                 <CardActionArea>
                                   <CardMedia
                                       className='card-media'
-                                      image = {SubscriptionDetail}
+                                      image = {breakfast_image1}
                                       title = "Upcoming Meal"
                                    />
                                  <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
+                                    <Typography gutterBottom component="h6">
                                     Gobi-Methi Paranthas, Curd & Chutney
                                     </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">
@@ -144,11 +159,11 @@ export default class SubscriptionDetails extends React.Component{
                                 <CardActionArea>
                                   <CardMedia
                                       className='card-media'
-                                      image = {SubscriptionDetail}
+                                      image = {breakfast_image2}
                                       title = "Upcoming Meal1"
                                    />
                                  <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
+                                    <Typography gutterBottom component="h6">
                                     Gobi-Methi Paranthas, Curd & Chutney
                                     </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">
@@ -168,11 +183,11 @@ export default class SubscriptionDetails extends React.Component{
                                 <CardActionArea>
                                   <CardMedia
                                       className='card-media'
-                                      image = {SubscriptionDetail}
+                                      image = {breakfast_image3}
                                       title = "Upcoming Meal1"
                                    />
                                  <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
+                                    <Typography gutterBottom component="h6">
                                     Gobi-Methi Paranthas, Curd & Chutney
                                     </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">
@@ -192,11 +207,11 @@ export default class SubscriptionDetails extends React.Component{
                                 <CardActionArea>
                                   <CardMedia
                                       className='card-media'
-                                      image = {SubscriptionDetail}
+                                      image = {breakfast_image2}
                                       title = "Upcoming Meal1"
                                    />
                                  <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
+                                    <Typography gutterBottom component="h6">
                                     Gobi-Methi Paranthas, Curd & Chutney
                                     </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">

@@ -15,7 +15,7 @@ import SignUp from './views/Signup.js';
 import TabContainer from './components/tabcontainer/TabContainer.js'
 import './App.css';
 import Subscription from './views/subscription/Subscription'
-
+import Header from './components/header/Header';
 
 /* Defining the basic layout of the application */
 const useStyles = makeStyles(theme => ({
@@ -45,20 +45,9 @@ function App() {
   }
   return (
     <div className={classes.root}>
-      <AppBar className={classes.appbar} position="static">
-       <Toolbar> 
-          <img className={classes.logo} src={logo} alt="logo" />
-            <Tabs className={classes.tabs} value={value} onChange={handleChange}>
-              <Tab label="Eat" />
-              <Tab label="Diet Consultation" />
-            </Tabs>
-          <Button>Sign Up</Button>
-          <Button>Login</Button>
-       </Toolbar>
-      </AppBar>
-      {value === 0 && <TabContainer><Subscription/></TabContainer>}
-      {value === 1 && <TabContainer>Diet Consultation</TabContainer>}
-     
+      <Header/>
+       <Subscription/>
+    
     </div>
   );
 }

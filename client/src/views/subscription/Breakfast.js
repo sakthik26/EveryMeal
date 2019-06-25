@@ -37,20 +37,24 @@ export default class Breakfast extends React.Component{
             <div className="breakfastParent">
                 <Grid container justify='center' spacing={3}>
                     <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
+                      <Link color="inherit" href="/details">
                         <img className="breakfast" src={breakfast_image1} alt="bf1" />
                         <Typography>
                         <span>Starting:</span>
                         <span style={{float:'right'}}> $12/meal </span>
                          
                         </Typography>
+                      </Link>
                     </Grid>
                     <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
+                      <Link color="inherit" href="/details">
                         <img className="breakfast" src={breakfast_image2} alt="bf2" />
                         <Typography>
                         <span>Starting:</span>
                         <span style={{float:'right'}}> $14/meal </span>
                          
                         </Typography>
+                       </Link>
                     </Grid>
                     <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
                         <img className="breakfast" src={breakfast_image3} alt="bf3" />

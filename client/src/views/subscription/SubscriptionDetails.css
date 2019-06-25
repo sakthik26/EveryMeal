@@ -1,6 +1,11 @@
+.details-grid-parent{
+    margin-top: 2%!important
+}
+
 .details-grid-parent .details-grid-item img.sub-detail{
      max-width:100%
 }
+
 
 .details-grid-parent .card-content{
     display: flex;
@@ -11,7 +16,7 @@
 
 .details-grid-parent .meal-session{
     margin-top: 9px;
-    flex-basis: 5em;
+    flex-basis: 8em;
 }
 
 .details-grid-parent button{
