@@ -23,7 +23,7 @@ class Chart extends Component {
 
     const margins = { top: 50, right: 20, bottom: 100, left: 60 }
     const svgDimensions = {
-      width: 800,
+      width: 700,
       height: 600
     }
 

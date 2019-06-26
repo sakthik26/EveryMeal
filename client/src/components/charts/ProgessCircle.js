@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import { arc, pie } from 'd3-shape'
 import * as d3 from 'd3'
-import bgImage from '../../images/fats.png';
+import { withStyles } from '@material-ui/core/styles';
 
+
+const styles = theme => ({
+    centerElements: {
+        textAlign: 'center',
+    },
+})
 
 class ProgressCircle extends Component {
 
@@ -13,49 +18,55 @@ class ProgressCircle extends Component {
     drawPie() {
         const canvasHeight = 150
         const canvasWidth = 150
-        const twoPi = 2 * Math.PI
+        const startA = this.props.percentage*(2*Math.PI)
 
         const arc = d3.arc()
-            .startAngle(1.5 * Math.PI)
+            .startAngle(startA)
             .innerRadius(0)
             .outerRadius(canvasWidth / 2);
 
-        const svgCanvas = d3.select(this.refs.test)
+        const svgCanvas = d3.select(this.refs.canvas)
             .append("svg")
             .attr("width", canvasWidth)
             .attr("height", canvasHeight)
-            .attr("class", "Canvas-svg")
-            .style("border", "1px solid black")
-            .append("g")
-            .attr("transform", "translate(" + canvasWidth / 2 + "," + canvasHeight / 2 + ")");
-
-        const meter = svgCanvas.append("g")
-            .attr("class", "progress");
+            .attr("class", "CanvasSvg")
 
         const bg = svgCanvas.append("g")
             .attr("class", "bg");
 
+        const meter = svgCanvas.append("g")
+            .attr("transform", "translate(" + canvasWidth / 2 + "," + canvasHeight / 2 + ")").append("g")
+            .attr("class", "progress");
+
         meter.append("path")
-            .attr("class", "progress circle")
-            .attr("fill", "rgba(52, 52, 52, 0.1)")
-            .attr("d", arc.endAngle(twoPi));
+            .attr("class", "progress-circle")
+            .attr("fill", "rgba(52, 52, 52, 0.7)")
+            .attr("d", arc.endAngle(2 * Math.PI));
 
         bg.append("image")
             .attr("class", "background-image")
-            .attr("xlink:href", bgImage)
-            .attr("height",canvasHeight)
-            .attr("width",canvasWidth)
-            .attr("x","0")
-            .attr("y","0");
+            .attr("xlink:href", this.props.url)
+            .attr("height", "100%")
+            .attr("width", "100%")
+            .attr("x", "0")
+            .attr("y", "0");
 
     }
+
+      
     render() {
+        const { classes } = this.props 
+
         return (
-            <div ref="test"><h2>Fats:</h2></div>
+            <div>
+                <div className={classes.centerElements} ref="canvas"></div>
+                <h4 className={classes.centerElements}>{this.props.label}: {Math.round(this.props.percentage*100)}%</h4>
+            </div>
+            
         );
     }
 
 
 }
 
-export default ProgressCircle
+export default withStyles(styles)(ProgressCircle)
