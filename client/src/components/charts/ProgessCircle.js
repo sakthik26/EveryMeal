@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { arc, pie } from 'd3-shape'
 import * as d3 from 'd3'
+import bgImage from '../../images/fats.png';
+
 
 class ProgressCircle extends Component {
 
@@ -38,10 +40,13 @@ class ProgressCircle extends Component {
             .attr("fill", "rgba(52, 52, 52, 0.1)")
             .attr("d", arc.endAngle(twoPi));
 
-        bg.append("path")
-            .attr("class", "background")
-            .attr("fill", "blue")
-            .attr("d", arc.endAngle(1.7*Math.PI));
+        bg.append("image")
+            .attr("class", "background-image")
+            .attr("xlink:href", bgImage)
+            .attr("height",canvasHeight)
+            .attr("width",canvasWidth)
+            .attr("x","0")
+            .attr("y","0");
 
     }
     render() {

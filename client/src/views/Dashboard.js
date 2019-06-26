@@ -6,12 +6,14 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { withStyles } from '@material-ui/core/styles';
+import logo from '../images/everyMealLogo.png';
 
 import Page from '../components/page/Page';
 import ConsumptionGraph from '../components/charts/Chart';
 import Select from '../components/buttons/SimpleSelect';
 import AddMealButton from '../components/buttons/DialogButton';
-import Pie2 from '../components/charts/ProgessCircle'
+import ProgessCircle from '../components/charts/ProgessCircle'
+import ProgressCircle from '../components/charts/ProgessCircle';
 
 const styles = theme => ({
     main: {
@@ -47,17 +49,7 @@ export class Dashboard extends React.Component {
 
                     <Grid item xs={12} md={6}>
                         <h1>Macronutrients</h1>
-                        {/* <Pie
-                            data={nutrient}
-                            width={150}
-                            height={150}
-                            innerRadius={0}
-                            outerRadius={75}
-
-                        /> */}
-                        <Pie2
-                        
-                        />
+                        <ProgressCircle />
                     </Grid>
 
                     <Grid item xs={12} md={6}>
