@@ -41,7 +41,10 @@ class ProgressCircle extends Component {
         meter.append("path")
             .attr("class", "progress-circle")
             .attr("fill", "rgba(52, 52, 52, 0.7)")
-            .attr("d", arc.endAngle(2 * Math.PI));
+            .attr("stroke", "#fff")
+            .attr("stroke-width", "3px")
+            .attr("d", arc.endAngle(2 * Math.PI))
+            ;
 
         bg.append("image")
             .attr("class", "background-image")
