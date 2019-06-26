@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { scaleBand, scaleLinear, scaleOrdinal } from 'd3-scale'
 import { stack } from 'd3-shape'
 import Axes from './Axes'
-import Stack from './Stack';
+import Stack from './Stack'
 import testData from '../../testData'
 
 class Chart extends Component {
@@ -26,6 +26,8 @@ class Chart extends Component {
       width: 700,
       height: 600
     }
+    
+    const colors = ["#FFD966", "#A9D18E", "#00B0F0"]
 
     let maxValue = Math.max(...stackedData[stackedData.length - 1].map(array => array[1]))
 
@@ -53,6 +55,7 @@ class Chart extends Component {
             data={barData}
             maxValue={maxValue}
             svgDimensions={svgDimensions}
+            colors={colors}
             />
           </svg>
       </div>

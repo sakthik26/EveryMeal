@@ -34,12 +34,10 @@ export default class Stack extends Component {
   }
 
   render() {
-    const { scales, data, margins, svgDimensions } = this.props
+    const { scales, data, margins, svgDimensions, colors } = this.props
     const { xScale, yScale } = scales
     const { height } = svgDimensions
     const barData = data;
-
-    const colors = ["#FFD966", "#A9D18E", "#00B0F0"]
 
     const max = barData.map(el => (Number(el.carbs) + Number(el.proteins) + Number(el.fats))).reduce((acc, cur) => Math.max(acc, cur), 0);
     const shortid = require('shortid');

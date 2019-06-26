@@ -13,6 +13,7 @@ import ConsumptionGraph from '../components/charts/Chart';
 import Select from '../components/buttons/SimpleSelect';
 import AddMealButton from '../components/buttons/DialogButton';
 import ProgressCircle from '../components/charts/ProgessCircle';
+import Legend from '../components/charts/Legend'
 
 import Fats from '../images/nutrients/fats.png'
 import Proteins from '../images/nutrients/proteins.png'
@@ -66,6 +67,7 @@ export class Dashboard extends React.Component {
                                 {/*TODO: Pass propper onchange function such that api call for graph gets updated*/}
                                 <Select months={months} />
                                 <ConsumptionGraph />
+                                <Legend />
                             </Box>
                         </Grid>
 
