@@ -11,7 +11,7 @@ import Page from '../components/page/Page';
 import ConsumptionGraph from '../components/charts/Chart';
 import Select from '../components/buttons/SimpleSelect';
 import AddMealButton from '../components/buttons/DialogButton';
-import ProgressCircle from '../components/charts/ProgressCircle';
+import Pie2 from '../components/charts/ProgessCircle'
 
 const styles = theme => ({
     main: {
@@ -25,6 +25,7 @@ export class Dashboard extends React.Component {
 
         //TODO: Change months such that it reflects month available in api response
         const months = [{ id: 201906, name: "June 2019" }, { id: 201905, name: "May 2019" }, { id: 201904, name: "April 2019" }, { id: 201903, name: "March 2019" }]
+        const nutrient = [{date: 1, value: 75},{date: 2, value: 25}]
 
         return (
             <Page>
@@ -40,12 +41,23 @@ export class Dashboard extends React.Component {
                             </Box>
                         </Grid>
                         <Grid item>
-                            <AddMealButton label="+ Add meal"/>
+                            <AddMealButton label="+ Add meal" />
                         </Grid>
                     </Grid>
 
                     <Grid item xs={12} md={6}>
                         <h1>Macronutrients</h1>
+                        {/* <Pie
+                            data={nutrient}
+                            width={150}
+                            height={150}
+                            innerRadius={0}
+                            outerRadius={75}
+
+                        /> */}
+                        <Pie2
+                        
+                        />
                     </Grid>
 
                     <Grid item xs={12} md={6}>
