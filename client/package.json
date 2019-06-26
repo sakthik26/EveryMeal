@@ -22,6 +22,7 @@
     "redux": "^4.0.1",
     "redux-form": "^8.2.4",
     "redux-promise": "^0.6.0",
+    "shortid": "^2.2.14",
     "typescript": "^3.5.2"
   },
   "scripts": {

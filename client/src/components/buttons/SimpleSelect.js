@@ -43,7 +43,7 @@ export default function SimpleSelect(props) {
           className={classes.selectEmpty}
         >
           {props.months.map(item =>(
-              <MenuItem value={item.id}>{item.name}</MenuItem>
+              <MenuItem key={item.id.toString()} value={item.id}>{item.name}</MenuItem>
           ))}  
         </Select>
         <FormHelperText>Change dates</FormHelperText>

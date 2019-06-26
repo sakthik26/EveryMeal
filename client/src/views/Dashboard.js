@@ -75,7 +75,7 @@ export class Dashboard extends React.Component {
                         <h2>Macronutrients</h2>
                         <Grid container>
                             {macronutrients.map(item => (
-                                <Grid xs={4}>
+                                <Grid key={item.index} item xs={4}>
                                     <ProgressCircle label={item.name} percentage={item.value} url={item.url} />
                                 </Grid>
                             ))}
@@ -87,7 +87,7 @@ export class Dashboard extends React.Component {
                         <h2>Micronutrients</h2>
                         <Grid container>
                             {micronutrients.map(item => (
-                                <Grid xs={4}>
+                                <Grid key={item.index} item xs={4}>
                                     <ProgressCircle label={item.name} percentage={item.value} url={item.url} />
                                 </Grid>
                             ))}
