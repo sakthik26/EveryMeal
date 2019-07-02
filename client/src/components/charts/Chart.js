@@ -4,6 +4,7 @@ import { stack } from 'd3-shape'
 import Axes from './Axes'
 import Stack from './Stack'
 import testData from '../../testData'
+import './Chart.css'
 
 class Chart extends Component {
   constructor() {
@@ -41,8 +42,9 @@ class Chart extends Component {
       .range([svgDimensions.height - margins.bottom, margins.top])      
 
     return (
-      <div className="Dashboard-consumption-graph">
-         <svg width={svgDimensions.width} height={svgDimensions.height}>
+      <div className="svg-container">
+         <svg className="svg-content-responsive" preserveAspectRatio="xMinYMin meet" viewBox="0 0 700 600"
+         >
             <Axes
               scales={{ xScale, yScale }}
               maxValue={maxValue}

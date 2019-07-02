@@ -50,7 +50,7 @@ export class Dashboard extends React.Component {
                     <Grid item xs={12}>
                         <h1>Food Consumption</h1>
 
-                        <Grid container className={classes.graphButtons} item xs={12} md={6} xl={3} justify="space-between">
+                        <Grid container className={classes.graphButtons} item sm={12} md={8} xl={6} justify="space-between">
                             <Grid item>
                                 <ButtonGroup variant="contained" size="small">
                                     <Button>Weekly</Button>
@@ -62,7 +62,7 @@ export class Dashboard extends React.Component {
                             </Grid>
                         </Grid>
 
-                        <Grid item >
+                        <Grid item xl={6} md={8} sm={12}>
                             <Box my={5}>
                                 {/*TODO: Pass propper onchange function such that api call for graph gets updated*/}
                                 <Select months={months} />
@@ -75,9 +75,9 @@ export class Dashboard extends React.Component {
 
                     <Grid item xs={12} md={6} xl={3}>
                         <h2>Macronutrients</h2>
-                        <Grid container>
+                        <Grid container spacing={20}>
                             {macronutrients.map(item => (
-                                <Grid key={item.index} item xs={4}>
+                                <Grid key={item.index} item xs={12} sm={4}>
                                     <ProgressCircle label={item.name} percentage={item.value} url={item.url} />
                                 </Grid>
                             ))}
@@ -87,9 +87,9 @@ export class Dashboard extends React.Component {
 
                     <Grid item xs={12} md={6} xl={3}>
                         <h2>Micronutrients</h2>
-                        <Grid container>
+                        <Grid container spacing={2}>
                             {micronutrients.map(item => (
-                                <Grid key={item.index} item xs={4}>
+                                <Grid key={item.index} item xs={12} sm={4}>
                                     <ProgressCircle label={item.name} percentage={item.value} url={item.url} />
                                 </Grid>
                             ))}
