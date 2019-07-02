@@ -1,0 +1,93 @@
+.lunchParent{
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.lunchImage{
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.day {
+  font-size: 1.1rem;
+  letter-spacing: 0.8rem;
+  text-align: center;
+  line-height: 2em;
+  display: inline-block;
+}
+
+.caption{
+    text-align: center;
+    padding-top: 2%;
+    font-family: Geneva, sans-serif;
+    color: gray;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    width: 96%;
+    display: inline-block;
+}
+
+.polaroid {
+  background: #fff;
+  padding: 1rem;
+  text-align: center; 
+}
+
+.polaroid > img{
+  max-width: 100%;
+  height: auto;
+}
+
+.lunchOption {
+  width: 33.3%;
+  display: inline-block;
+  margin-top: 1rem;
+  transform: scale(0.9, 0.9);
+  transition: all 0.35s;
+  flex-grow: 0;
+}
+.lunchOption .polaroid:before {
+  position: absolute;
+  transition: all 0.35s;
+}
+
+.lunchOption:hover {
+  filter: none;
+  transform: scale(1, 1);
+  transition: all 0.35s;
+}
+.lunchOption:hover .polaroid:before {
+  content: '';
+  position: absolute;
+  transition: all 0.35s;
+}
+
+.topnav {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.topnav a {
+  color: #666666;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color:#ffe6f2;
+  color: black;
+}
+
+
+.pos {
+  margin-bottom: 12;
+}

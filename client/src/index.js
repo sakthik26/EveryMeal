@@ -10,6 +10,9 @@ import Signup from './views/Signup'
 import configureStore from './store/ConfigureStore';
 import Dashboard from './views/Dashboard';
 import SubscriptionDetails from './views/subscription/SubscriptionDetails';
+import Eatnow from './views/eatnow/Eatnow';
+import Eatnow2 from './views/eatnow/Eatnow2';
+import Mealpage from './views/eatnow/Mealpage';
 
 const store = configureStore();
 
@@ -21,6 +24,10 @@ const routing = (
         <Route path="/signup" component= {Signup} />
         <Route path="/dashboard" component= {Dashboard} />
         <Route exact path="/details" component= {SubscriptionDetails} />
+        <Route exact path="/eatnow" component= {Eatnow} />
+        <Route exact path="/mealpage" component= {Mealpage} />
+        <Route exact path="/eatnowpage2" component= {Eatnow2} />
+        
       </div>
     </Router>
   </Provider>

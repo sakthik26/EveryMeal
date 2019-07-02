@@ -11,7 +11,7 @@ const styles = theme => ({
         bottom: 0,
         left: 0,
         right: 0,
-        position: 'fixed',
+        position: 'static',
         minHeight: '100px',
         textAlign: 'center',
     },
