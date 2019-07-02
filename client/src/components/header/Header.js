@@ -36,8 +36,8 @@ class Header extends React.Component {
                 <Toolbar>
                     <img className={classes.logo} src={logo} alt="logo" />
                     <Tabs className={classes.tabs}>
-                        <Tab label="Eat Now" />
-                        <Tab label="Subscribe" />
+                        <Tab label="Eat" />
+                        <Tab label="Diet Consultation" />
                     </Tabs>
                     <Button>Sign Up</Button>
                     <Button>Login</Button>

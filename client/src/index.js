@@ -9,6 +9,7 @@ import {Route, Link, BrowserRouter as Router} from "react-router-dom";
 import Signup from './views/Signup'
 import configureStore from './store/ConfigureStore';
 import Dashboard from './views/Dashboard';
+import SubscriptionDetails from './views/subscription/SubscriptionDetails';
 
 const store = configureStore();
 
@@ -19,6 +20,7 @@ const routing = (
         <Route exact path="/" component= {App} />
         <Route path="/signup" component= {Signup} />
         <Route path="/dashboard" component= {Dashboard} />
+        <Route exact path="/details" component= {SubscriptionDetails} />
       </div>
     </Router>
   </Provider>

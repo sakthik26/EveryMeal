@@ -1,0 +1,40 @@
+.root{
+    flex-grow: 1
+}
+
+.root .eatnow, .root .subscribe{
+     min-width: 100%;
+     max-width: 100%;
+     cursor: pointer;
+}
+
+.root .subscriptionSessions .subscriptionTitle{
+    font-weight: bold;
+}
+.subscriptionSessions button.filter-button{
+    text-align: right;
+}
+
+.subscriptionSessions .filter-block{
+    width: 200px;
+    /* float: right; */
+    position: absolute;
+    right: 9%;
+    /* margin-right: 0px; */
+    background-color: #fff;
+    /* background-clip: padding-box; */
+    border-radius: 4px;
+    box-shadow: 0 4px 4px 2px rgba(19,19,19,.3);
+    border-top: none;
+    font-size: 14px;
+    padding: 30px 16px 16px;
+    text-align: left;
+}
+
+.subscriptionSessions .filter-block button{
+    float: right;
+}
+
+.subscriptionSessions .filter-block .MuiTypography-body1{
+    font-size: 13px
+}
