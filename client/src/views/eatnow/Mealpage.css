@@ -1,19 +1,17 @@
-.right{
-   float:right; 
+.left{
+   float:left; 
    width: 35%;
    padding: 3rem;
 }
 
-.left{
-    float:left; 
+.right{
+    float:right; 
     margin: 3rem;
     width: 80%;
  }
 
-
  .mealGrid{
     display: block;
-    
  }
 
  .override{
@@ -21,7 +19,7 @@
  }
 
 .lunch_image1{
-    border-radius: 5%;
+    border-radius: 2%;
     width: 100%;
     display:block;
     
@@ -78,8 +76,8 @@ p{
 }
 
 .details-grid-parent button{
-    margin-top: 10%;
-    float: right;
+    margin: 2%;
+    float: left!important;
 }
 
 .details-upcoming-meals .details-upcoming-item{
@@ -105,9 +103,17 @@ div.details-upcoming-meals{
 
 .button{
     padding: 1rem;
+    background-color: blue;
 }
 
 .MuiPaper-elevation1{
     box-shadow: none!important;
 }
 
+.MuiButtonBase-root .MuiButton-root .MuiButton-contained .MuiButton-containedSecondary{
+    float: left!important;
+}
+
+.form{
+    margin-top: 2rem;
+}

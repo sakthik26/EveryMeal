@@ -1,34 +1,29 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
+import {Link, Grid} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import './Eatnow.css'
-import lunch_image1 from '../../images/lunch1.1.png'
-import lunch_image2 from '../../images/lunch1.2.png'
-import lunch_image3 from '../../images/lunch1.3.png'
-import lunch_image4 from '../../images/lunch1.4.png'
-import lunch_image5 from '../../images/lunch1.5.png'
-import lunch_image6 from '../../images/lunch1.6.png'
-import lunch_image7 from '../../images/lunch1.7.png'
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import lunch_image11 from '../../images/lunch1.1.png'
+import lunch_image12 from '../../images/lunch1.2.png'
+import lunch_image13 from '../../images/lunch1.3.png'
+import lunch_image21 from '../../images/lunch2.1.png'
+import lunch_image22 from '../../images/lunch2.2.png'
+import lunch_image23 from '../../images/lunch2.3.png'
+import lunch_image31 from '../../images/lunch3.1.png'
+import lunch_image32 from '../../images/lunch3.2.png'
+import lunch_image33 from '../../images/lunch3.3.png'
+import lunch_image41 from '../../images/lunch4.1.png'
+import lunch_image42 from '../../images/lunch4.2.png'
+import lunch_image43 from '../../images/lunch4.3.png'
+import lunch_image51 from '../../images/lunch5.1.png'
+import lunch_image52 from '../../images/lunch5.2.png'
+import lunch_image53 from '../../images/lunch5.3.png'
+import lunch_image61 from '../../images/lunch6.1.png'
+import lunch_image62 from '../../images/lunch6.2.png'
+import lunch_image63 from '../../images/lunch6.3.png'
+import lunch_image71 from '../../images/lunch7.1.png'
+import lunch_image72 from '../../images/lunch7.2.png'
+import lunch_image73 from '../../images/lunch7.3.png'
 import './Lunch.css';
-import TabContainer from '../../components/tabcontainer/TabContainer.js'
-import { FormControl, Card, CardContent, CardActions, CardActionArea } from '@material-ui/core';
-import CardMedia from '@material-ui/core/CardMedia';
 
 
 export default class Lunch extends React.Component{
@@ -47,11 +42,12 @@ export default class Lunch extends React.Component{
                 </div>
 
                 <Grid container spacing={9}>
+                <div class="day">Monday</div>
+                <div>
                 <Grid class="lunchOption">
                     <Link color="inherit" href="/mealpage">
                         <div class="polaroid">
-                            <div class="day">Monday</div>
-                            <img className="lunchImage" src={lunch_image1}/>
+                            <img className="lunchImage" src={lunch_image11}/>
                             <div class="caption">Mango chicken salad with ginger dressing</div>
                         </div>
                     </Link>    
@@ -59,57 +55,190 @@ export default class Lunch extends React.Component{
                 <Grid class="lunchOption">
                     <Link color="inherit" href="/mealpage">
                         <div class="polaroid">
-                            <div class="day">Tuesday</div>
-                            <img className="lunchImage" src={lunch_image2}/>
-                            <div class="caption">Chicken tacos with roasted red peppers</div>
+                            <img className="lunchImage" src={lunch_image12}/>
+                            <div class="caption">Seared steaks with romesco and artichoke-olive salad</div>
                         </div>
-                    </Link>
+                    </Link>    
                 </Grid>
                 <Grid class="lunchOption">
                     <Link color="inherit" href="/mealpage">
                         <div class="polaroid">
-                            <div class="day">Wednesday</div>
-                            <img className="lunchImage" src={lunch_image3}/>
-                            <div class="caption">Ratatouille with squash ribbons and ciabatta toasts</div>
+                            <img className="lunchImage" src={lunch_image13}/>
+                            <div class="caption">Sweet and sour eggplant wraps with cashews and bok choy slaw</div>
                         </div>
-                    </Link>
+                    </Link>    
+                </Grid>
+                </div>    
+
+                <div class="day">Tuesday</div>
+                <div>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image21}/>
+                            <div class="caption">Ancho chicken Mexican pozole with hominy</div>
+                        </div>
+                    </Link>    
                 </Grid>
                 <Grid class="lunchOption">
                     <Link color="inherit" href="/mealpage">
                         <div class="polaroid">
-                            <div class="day">Thursday</div>
-                            <img className="lunchImage" src={lunch_image4}/>
-                            <div class="caption">Teriyaki cauliflower tacos with pineapple salsa</div>
+                            <img className="lunchImage" src={lunch_image22}/>
+                            <div class="caption">Thai-style salmon with peach-cabbage slaw</div>
                         </div>
-                    </Link>
+                    </Link>    
                 </Grid>
                 <Grid class="lunchOption">
                     <Link color="inherit" href="/mealpage">
                         <div class="polaroid">
-                            <div class="day">Friday</div>
-                            <img className="lunchImage" src={lunch_image5}/>
-                            <div class="caption">Lettuce cups with avocado, snap peas, and goji berries</div>
-                        </div>
-                    </Link>
-                </Grid>
-                <Grid class="lunchOption">
-                    <Link color="inherit" href="/mealpage">
-                        <div class="polaroid">
-                            <div class="day">Saturday</div>
-                            <img className="lunchImage" src={lunch_image6}/>
+                            <img className="lunchImage" src={lunch_image23}/>
                             <div class="caption">Tempeh sloppy joes with tangy coleslaw and pickled jalapeños</div>
                         </div>
-                    </Link>
+                    </Link>    
+                </Grid>
+                </div>    
+
+                <div class="day">Wednesday</div>
+                <div>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image31}/>
+                            <div class="caption">Beef skewers with pear slaw and sesame seeds</div>
+                        </div>
+                    </Link>    
                 </Grid>
                 <Grid class="lunchOption">
                     <Link color="inherit" href="/mealpage">
                         <div class="polaroid">
-                            <div class="day">Sunday</div>
-                            <img className="lunchImage" src={lunch_image7}/>
-                            <div class="caption">Texas shrimp Salad with Guacamole</div>
+                            <img className="lunchImage" src={lunch_image32}/>
+                            <div class="caption">Cheesy fusili with leeks and wilted greens</div>
                         </div>
-                    </Link>
+                    </Link>    
                 </Grid>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image33}/>
+                            <div class="caption">Burrito bowls with basmati rice, black beans, and avocado</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                </div>    
+
+                <div class="day">Thursday</div>
+                <div>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image41}/>
+                            <div class="caption">Chipotle turkey chili with cucumber-sumac salad</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image42}/>
+                            <div class="caption">Lemony shrimp and orzo pasta salad with peas and baby greens</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image43}/>
+                            <div class="caption">Lettuce cups with avocado, snap peas, and goji berries</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                </div>    
+
+                <div class="day">Friday</div>
+                <div>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image51}/>
+                            <div class="caption">Meze platter with lamb meatballs and tzatziki</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image52}/>
+                            <div class="caption">Mediterranean salad with falafel and Marcona almonds</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image53}/>
+                            <div class="caption">Tamarina chana chickpea masala with naan</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                </div>    
+
+                <div class="day">Saturday</div>
+                <div>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image61}/>
+                            <div class="caption">Pork chops with vinaigrette pan sauce and sweet potato mash</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image62}/>
+                            <div class="caption">Jersey Shore shrimp chowder with spiced ciabatta croutons</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image63}/>
+                            <div class="caption">Black bean spaghetti with ratatouille and gremolata</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                </div>    
+
+                <div class="day">Sunday</div>
+                <div>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image71}/>
+                            <div class="caption">Pan-seared chicken and carrots with mint pesto and couscous</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image72}/>
+                            <div class="caption">Chorizo paella with cauliflower rice and aioli</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                <Grid class="lunchOption">
+                    <Link color="inherit" href="/mealpage">
+                        <div class="polaroid">
+                            <img className="lunchImage" src={lunch_image73}/>
+                            <div class="caption">Dubu kimchi stir-fry with tofu and pickled chard</div>
+                        </div>
+                    </Link>    
+                </Grid>
+                </div>    
+                
+                
                 
                 </Grid>    
             </div>

@@ -1,3 +1,32 @@
 .form-control {
-    min-width: 120
+    width: 100%;
   }
+
+  .option{
+    width: 25%;
+    margin: 0.8rem;
+  }
+
+.MuiFormLabel-root{
+    font-size: 0.9rem;
+}
+
+.MuiFormControl-root{
+    display: block!important;
+}
+
+.MuiInputLabel-formControl{
+    top: none!important;
+    left: none!important;
+}
+
+.MuiInput-underline:after{
+    border-bottom: 2px solid #f50057!important;
+}
+.MuiFormLabel-root.Mui-focused{
+    color:  #f50057!important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+    border-color:  #f50057!important;
+}
