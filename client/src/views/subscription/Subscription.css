@@ -29,6 +29,7 @@
     font-size: 14px;
     padding: 30px 16px 16px;
     text-align: left;
+    z-index:1;
 }
 
 .subscriptionSessions .filter-block button{

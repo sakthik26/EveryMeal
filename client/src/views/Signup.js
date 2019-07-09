@@ -1,5 +1,6 @@
 "use strict";
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +14,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { withStyles } from '@material-ui/styles';
+import { withRouter } from "react-router-dom";
+import UserService from '../Services/UserService';
 
 function MadeWithLove() {
   return (
@@ -22,34 +26,84 @@ function MadeWithLove() {
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   '@global': {
     body: {
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: 'white',
     },
   },
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: '10%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    marginTop: '10%',
+    // backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    // marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    marginTop: '10%',
   },
-}));
+});
 
-export default function SignUp() {
-  const classes = useStyles();
 
+
+class SignUp extends React.Component {
+ 
+constructor(props){
+  super(props);
+  this.state = {
+    error:"",
+    firstname:"",
+    lastname:"",
+    email:"",
+    password:""
+  };
+  this.handleSignup = this.handleSignup.bind(this);
+  this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
+  this.handleChangeLastName = this.handleChangeLastName.bind(this);
+  this.handleChangePassword = this.handleChangePassword.bind(this);
+  this.handleChangeEmail = this.handleChangeEmail.bind(this);
+}
+
+handleChangeFirstName(event) {
+  this.setState({firstname:event.target.value});
+}
+handleChangeLastName(event) {
+  this.setState({lastname:event.target.value});
+}
+handleChangeEmail(event) {
+  this.setState({email:event.target.value});
+}
+handleChangePassword(event) {
+  this.setState({password:event.target.value});
+}
+
+handleSignup(event){
+       event.preventDefault();
+      let user = {
+        firstname : this.state.firstname,
+        lastname: this.state.lastname,
+        email: this.state.email,
+        password: this.state.password
+      }
+      UserService.register(user.firstname, user.lastname,user.email,user.password).then((data) => {
+        this.props.history.push('/eat');
+      }).catch((e) => {
+        console.error(e);
+        this.setState({
+            error: e
+        });
+      })
+}
+  
+render(){
+  const {classes} = this.props;
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -57,20 +111,22 @@ export default function SignUp() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" container justify='center'>
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={this.handleSignup} className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"
-                name="firstName"
+                name="firstname"
                 variant="outlined"
                 required
                 fullWidth
                 id="firstName"
                 label="First Name"
+                value = {this.state.firstname}
+                onChange={this.handleChangeFirstName}
                 autoFocus
               />
             </Grid>
@@ -81,7 +137,9 @@ export default function SignUp() {
                 fullWidth
                 id="lastName"
                 label="Last Name"
-                name="lastName"
+                name="lastname"
+                value = {this.state.lastname}
+                onChange={this.handleChangeLastName}
                 autoComplete="lname"
               />
             </Grid>
@@ -93,6 +151,8 @@ export default function SignUp() {
                 id="email"
                 label="Email Address"
                 name="email"
+                value = {this.state.email}
+                onChange={this.handleChangeEmail}
                 autoComplete="email"
               />
             </Grid>
@@ -103,6 +163,8 @@ export default function SignUp() {
                 fullWidth
                 name="password"
                 label="Password"
+                value = {this.state.password}
+                onChange={this.handleChangePassword}
                 type="password"
                 id="password"
                 autoComplete="current-password"
@@ -121,21 +183,26 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+
           >
             Sign Up
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
-                Already have an account? Sign in
+              Already have an account?
               </Link>
+              
             </Grid>
           </Grid>
+         <div className={classes.error}> {this.state.error} </div>
         </form>
       </div>
       <Box mt={5}>
         <MadeWithLove />
       </Box>
     </Container>
-  );
+  );}
 }
+
+export default withStyles(styles)(SignUp);

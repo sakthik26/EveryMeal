@@ -16,9 +16,11 @@ import TabContainer from './components/tabcontainer/TabContainer.js'
 import './App.css';
 import Subscription from './views/subscription/Subscription'
 import Header from './components/header/Header';
-
+import UserService from './Services/UserService';
+import { withStyles } from '@material-ui/styles';
+import { withRouter } from "react-router-dom";
 /* Defining the basic layout of the application */
-const useStyles = makeStyles(theme => ({
+const styles = makeStyles(theme => ({
   appbar:{
     backgroundColor: '#FFFF',
     color: 'rgba(0, 0, 0, 0.87)'
@@ -36,20 +38,31 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-function App() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  function handleChange(event, newValue) {
-    setValue(newValue);
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.logOut = this.logOut.bind(this);
   }
-  return (
-    <div className={classes.root}>
-      <Header/>
-       <Subscription/>
-    
-    </div>
-  );
+
+
+   logOut(){
+    UserService.logout().then((data) => {
+      this.props.history.push('/login');
+    }).catch((e) => {
+      console.error(e);
+    })
+  }
+
+  render(){
+    const {classes} = this.props;
+    return (
+      <div className={classes.root}>
+        <Header logout={this.logOut}/>
+        <Subscription/>
+      
+      </div>
+    );
+   }
 }
 
-export default App;
+export default withStyles(styles)(App);

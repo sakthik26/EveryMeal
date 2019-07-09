@@ -39,8 +39,8 @@ class Header extends React.Component {
                         <Tab label="Eat" />
                         <Tab label="Diet Consultation" />
                     </Tabs>
-                    <Button>Sign Up</Button>
-                    <Button>Login</Button>
+                   
+                    <Button onClick={this.props.logout}>Logout</Button>
                 </Toolbar>
             </AppBar>
 
