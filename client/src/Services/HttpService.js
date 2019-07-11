@@ -24,11 +24,11 @@ export default class HttpService {
                 return resp.json();
             }
         }).then((resp) => {
-            if(resp.error) {
-                onError(resp.error);
+            if(resp && resp.error || resp.errmsg || resp._message) {
+                onError(resp.error || resp._message || resp.errmsg);
             }
             else {
-                if(resp['user'] && resp['user']['tokens'].length>0) {
+                if(resp && resp['user'] && resp['user']['tokens'].length>0) {
                     window.localStorage['jwtToken'] = resp['user'].tokens[0].token
                 }
                 onSuccess(resp);
@@ -59,11 +59,11 @@ export default class HttpService {
                 return resp.json();
             }
         }).then((resp) => {
-            if(resp.error) {
-                onError(resp.error);
+            if(resp && resp.error || resp.errmsg || resp._message) {
+                onError(resp.error || resp._message || resp.errmsg);
             }
             else {
-                if(resp['user'] && resp['user']['tokens'].length>0) {
+                if(resp && resp['user'] && resp['user']['tokens'].length>0) {
                     window.localStorage['jwtToken'] = resp['user'].tokens[0].token
                 }
                 onSuccess(resp);
@@ -86,19 +86,19 @@ export default class HttpService {
             headers: header,
             body: JSON.stringify(data)
         }).then((resp) => {
-            if(this.checkIfUnauthorized(resp)) {
-                window.location = "/login";
-                return;
-            }
-            else {
+            // if(this.checkIfUnauthorized(resp)) {
+            //     window.location = "/login";
+            //     return;
+            // }
+            // else {
                 return resp.json();
-            }
+            //}
         }).then((resp) => {
-            if(resp.error) {
-                onError(resp.error);
+            if(resp && resp.error || resp.errmsg || resp._message) {
+                onError(resp.error || resp._message || resp.errmsg);
             }
             else {
-                if(resp['user'] && resp['user']['tokens'].length>0) {
+                if(resp && resp['user'] && resp['user']['tokens'].length>0) {
                     window.localStorage['jwtToken'] = resp['user'].tokens[0].token
                 }
                 onSuccess(resp);

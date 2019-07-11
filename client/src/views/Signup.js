@@ -95,7 +95,6 @@ handleSignup(event){
       UserService.register(user.firstname, user.lastname,user.email,user.password).then((data) => {
         this.props.history.push('/eat');
       }).catch((e) => {
-        console.error(e);
         this.setState({
             error: e
         });
