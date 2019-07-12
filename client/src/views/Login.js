@@ -76,6 +76,7 @@ handleLogin(event){
       }
       UserService.login(user.email,user.password).then((data) => {
         this.props.history.push('/eat');
+        window.location.reload()
       }).catch((e) => {
         console.error(e);
         this.setState({

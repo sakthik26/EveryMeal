@@ -15,8 +15,7 @@ import SignUp from './views/Signup.js';
 import TabContainer from './components/tabcontainer/TabContainer.js'
 import './App.css';
 import Subscription from './views/subscription/Subscription'
-import Header from './components/header/Header';
-import UserService from './Services/UserService';
+
 import { withStyles } from '@material-ui/styles';
 import { withRouter } from "react-router-dom";
 /* Defining the basic layout of the application */
@@ -41,25 +40,15 @@ const styles = makeStyles(theme => ({
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.logOut = this.logOut.bind(this);
   }
 
 
-   logOut(){
-    UserService.logout().then((data) => {
-      this.props.history.push('/login');
-    }).catch((e) => {
-      console.error(e);
-    })
-  }
 
   render(){
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-        <Header logout={this.logOut}/>
-        <Subscription/>
-      
+
       </div>
     );
    }

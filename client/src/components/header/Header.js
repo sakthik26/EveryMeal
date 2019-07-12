@@ -13,6 +13,7 @@ import {Link} from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
+import UserService from '../../Services/UserService';
 
 const styles = theme => ({
     appbar: {
@@ -33,14 +34,46 @@ const styles = theme => ({
         margin: "0 auto",
         paddingBottom:"0px"
     },
-    logout:{
-        position: "absolute",
-        right: "2%"
-    }
     
 })
 
 class Header extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+        value: ''
+        };
+        this.handleChange = this.handleChange.bind(this)
+        this.logOut = this.logOut.bind(this)
+        this.login = this.login.bind(this)
+        this.signup = this.signup.bind(this)
+    }
+    handleChange() {
+        this.setState({
+          value: '1'
+        });
+      }
+
+     logOut(){
+        UserService.logout().then((data) => {
+          window.location = "/login";
+        }).catch((e) => {
+          window.location = "/login";
+          console.error(e);
+        })
+      }
+      
+     login(){
+          window.location = "/login";
+          this.handleChange()
+      }
+      
+     signup(){
+          window.location = "/signup";
+          this.handleChange()
+      }
+
     render() {
         const { classes } = this.props;
 
@@ -55,18 +88,20 @@ class Header extends React.Component {
                         <Tab label="Diet Consultation" />
                     </Tabs> */}
                    <MenuList className={classes.menulist}>
-                       <MenuItem className={classes.horizontalmenu}>
-                       <Link href='/eat' className={classes.link}>
-                        EAT
-                       </Link>
+                       <MenuItem className={classes.horizontalmenu} component={Link} to="/eat">
+                        Eat
                        </MenuItem>
-                       <MenuItem className={classes.horizontalmenu} Component={Link} to="/consultation">
-                       <Link href='/consultation' className={classes.link}>
-                        DIET CONSULTATION
-                        </Link>
+                       <MenuItem className={classes.horizontalmenu} component={Link} to="/consultation">
+                        Diet Consultation    
                       </MenuItem>
                     </MenuList>
-                    <Button className = "logout" onClick={this.props.logout}>Logout</Button>
+                    {window.localStorage['jwtToken'] == undefined ?   
+                    <div>
+                        <Button className = "login" onClick={this.login}>Login</Button>
+                        <Button className = "signup" onClick={this.signup}>Sign Up</Button> </div>
+                    : 
+                        <Button className = "logout" onClick={this.logOut}>Logout</Button>
+                    }
                 </Toolbar>
             </AppBar>
 

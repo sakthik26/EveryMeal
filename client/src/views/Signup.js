@@ -94,6 +94,7 @@ handleSignup(event){
       }
       UserService.register(user.firstname, user.lastname,user.email,user.password).then((data) => {
         this.props.history.push('/eat');
+        window.location.reload()
       }).catch((e) => {
         this.setState({
             error: e

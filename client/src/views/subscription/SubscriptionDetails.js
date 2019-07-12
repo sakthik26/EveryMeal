@@ -45,10 +45,11 @@ export default class SubscriptionDetails extends React.Component{
     handleChange(event){
         this.setState({selectedValue: event.target.value})
     }
+
+    
     render(){
         return(
             <div>
-            <Header/>
              <Grid className='details-grid-parent' container justify='center' spacing={2}>
                     <Grid item className='details-grid-item' xs={8} sm={4}>
                         <img className="sub-detail" src={SubscriptionDetail} alt="SubscriptionDetail" />

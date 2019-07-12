@@ -11,16 +11,21 @@ import Login from './views/Login'
 import configureStore from './store/ConfigureStore';
 import Dashboard from './views/Dashboard';
 import SubscriptionDetails from './views/subscription/SubscriptionDetails';
-
+import Header from './components/header/Header';
+import UserService from './Services/UserService';
+import Subscription from './views/subscription/Subscription';
 const store = configureStore();
+
+
 
 const routing = (
   <Provider store={store}>
     <Router>
       <div>
-        <Route exact path="/" component= {Signup} />
+       <Header/>
+        <Route exact path="/signup" component= {Signup} />
         <Route exact path="/login" component= {Login} />
-        <Route path="/eat" component= {App} />
+        <Route path="/eat" component= {Subscription} />
         <Route path="/dashboard" component= {Dashboard} />
         <Route exact path="/details" component= {SubscriptionDetails} />
       </div>
