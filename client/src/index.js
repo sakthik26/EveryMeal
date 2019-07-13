@@ -11,7 +11,7 @@ import Login from './views/Login'
 import configureStore from './store/ConfigureStore';
 import Dashboard from './views/Dashboard';
 import SubscriptionDetails from './views/subscription/SubscriptionDetails';
-import Header from './components/header/Header';
+
 import UserService from './Services/UserService';
 import Subscription from './views/subscription/Subscription';
 const store = configureStore();
@@ -22,7 +22,6 @@ const routing = (
   <Provider store={store}>
     <Router>
       <div>
-       <Header/>
         <Route exact path="/signup" component= {Signup} />
         <Route exact path="/login" component= {Login} />
         <Route path="/eat" component= {Subscription} />
@@ -30,7 +29,7 @@ const routing = (
         <Route exact path="/details" component= {SubscriptionDetails} />
       </div>
     </Router>
-  </Provider>
+  </Provider> 
 )
 
 ReactDOM.render(routing, document.getElementById('root'));

@@ -24,7 +24,7 @@ import Tab from '@material-ui/core/Tab';
 import TabContainer from '../../components/tabcontainer/TabContainer.js'
 import Breakfast from './Breakfast.js'
 import FormGroup from '@material-ui/core/FormGroup';
-
+import Header from '../../components/header/Header';
 
 
 export default class Subscription extends React.Component {
@@ -57,6 +57,7 @@ export default class Subscription extends React.Component {
     render(){
         return(
            <div className="root">
+            <Header/>
              <Grid container spacing={0}>
                <Grid item xs={6}>
                  <img className="eatnow" src={eatnow} alt="eatnow" onClick={this.handleMealService}/>

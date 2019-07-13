@@ -18,7 +18,7 @@ import axios from 'axios'
 import { withStyles } from '@material-ui/styles';
 import { withRouter } from "react-router-dom";
 import UserService from '../Services/UserService';
-
+import Header from '../components/header/Header';
 
 const styles = theme => ({
   '@global': {
@@ -76,7 +76,7 @@ handleLogin(event){
       }
       UserService.login(user.email,user.password).then((data) => {
         this.props.history.push('/eat');
-        window.location.reload()
+        //window.location.reload()
       }).catch((e) => {
         console.error(e);
         this.setState({
@@ -88,6 +88,8 @@ handleLogin(event){
 render(){
   const {classes} = this.props;
   return (
+    <div>
+    <Header/>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -143,6 +145,7 @@ render(){
       <Box mt={5}>
       </Box>
     </Container>
+    </div>
   );}
 }
 

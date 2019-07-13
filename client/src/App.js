@@ -15,7 +15,7 @@ import SignUp from './views/Signup.js';
 import TabContainer from './components/tabcontainer/TabContainer.js'
 import './App.css';
 import Subscription from './views/subscription/Subscription'
-
+import Header from './components/header/Header';
 import { withStyles } from '@material-ui/styles';
 import { withRouter } from "react-router-dom";
 /* Defining the basic layout of the application */
@@ -40,15 +40,15 @@ const styles = makeStyles(theme => ({
 class App extends React.Component {
   constructor(props){
     super(props);
-  }
-
+    this.state = {value: ""}
+    }
 
 
   render(){
-    const {classes} = this.props;
+    
     return (
-      <div className={classes.root}>
-
+      <div>
+      
       </div>
     );
    }

@@ -17,7 +17,7 @@ import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/styles';
 import { withRouter } from "react-router-dom";
 import UserService from '../Services/UserService';
-
+import Header from '../components/header/Header';
 function MadeWithLove() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -94,7 +94,7 @@ handleSignup(event){
       }
       UserService.register(user.firstname, user.lastname,user.email,user.password).then((data) => {
         this.props.history.push('/eat');
-        window.location.reload()
+        //window.location.reload()
       }).catch((e) => {
         this.setState({
             error: e
@@ -105,8 +105,11 @@ handleSignup(event){
 render(){
   const {classes} = this.props;
   return (
+    <div>
+    <Header/>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -202,6 +205,7 @@ render(){
         <MadeWithLove />
       </Box>
     </Container>
+    </div>
   );}
 }
 
