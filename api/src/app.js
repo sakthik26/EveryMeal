@@ -38,6 +38,7 @@
 const express = require('express');
 const port = process.env.PORT;
 const usersRoute = require("./routes/UserRoutes");
+const mealPlanRoute = require("./routes/MealPlanRoutes");
 //require('./db/db')
 const mongoose = require("mongoose");
 const cors = require('cors')
@@ -51,6 +52,7 @@ mongoose
 
 app.use(express.json());
 app.use(usersRoute);
+app.use(mealPlanRoute);
 
 
 app.listen(port, () => {

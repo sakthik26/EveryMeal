@@ -120,10 +120,10 @@ export default class Subscription extends React.Component {
                             <Tab label="Snacks" />
                             <Tab label="Dinner"/>
                         </Tabs>
-                        {this.state.value === 0 && <TabContainer><Breakfast/></TabContainer>}
-                        {this.state.value === 1 && <TabContainer><Breakfast/></TabContainer>}
-                        {this.state.value === 2 && <TabContainer><Breakfast/></TabContainer>}
-                        {this.state.value === 3 && <TabContainer><Breakfast/></TabContainer>}
+                        {this.state.value === 0 && <TabContainer><Breakfast tab={this.state.value}/></TabContainer>}
+                        {this.state.value === 1 && <TabContainer><Breakfast tab={this.state.value}/></TabContainer>}
+                        {this.state.value === 2 && <TabContainer><Breakfast tab={this.state.value}/></TabContainer>}
+                        {this.state.value === 3 && <TabContainer><Breakfast tab={this.state.value}/></TabContainer>}
                     </Grid> 
                 </Grid> : 'Eat Now' }
            </div>
