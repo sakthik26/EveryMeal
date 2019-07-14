@@ -1,13 +1,9 @@
 const express = require("express");
 const HealthCoach = require("../models/HealthCoachModel");
 
-const healthCoachrouter = express.Router();
+const healthCoachRouter = express.Router();
 
-const asyncMiddleware = fn => (req, res, next) => {
-  Promise.resolve(fn(req, res, next)).catch(next);
-};
-
-healthCoachrouter.post("/healthCoach", async function(req, res) {
+healthCoachRouter.post("/healthCoach", async function(req, res) {
   try {
     const newHealthCoach = new HealthCoach(req.body);
     await newHealthCoach.save();
@@ -17,7 +13,7 @@ healthCoachrouter.post("/healthCoach", async function(req, res) {
   }
 });
 
-healthCoachrouter.get("/healthCoach", async function(req, res) {
+healthCoachRouter.get("/healthCoach", async function(req, res) {
   HealthCoach.find({}, (err, healthCoach) => {
     if (err) {
       res.send(err);
@@ -26,7 +22,7 @@ healthCoachrouter.get("/healthCoach", async function(req, res) {
   });
 });
 
-healthCoachrouter.get("/healthCoach/:healthCoachID", async function(req, res) {
+healthCoachRouter.get("/healthCoach/:healthCoachID", async function(req, res) {
   HealthCoach.findById(req.params.healthCoachID, (err, healthCoach) => {
     if (err) {
       res.send(err);
@@ -35,7 +31,7 @@ healthCoachrouter.get("/healthCoach/:healthCoachID", async function(req, res) {
   });
 });
 
-healthCoachrouter.put("/healthCoach/:healthCoachID", async function(req, res) {
+healthCoachRouter.put("/healthCoach/:healthCoachID", async function(req, res) {
   HealthCoach.findOneAndUpdate(
     { _id: req.params.healthCoachID },
     req.body,
@@ -49,7 +45,7 @@ healthCoachrouter.put("/healthCoach/:healthCoachID", async function(req, res) {
   );
 });
 
-healthCoachrouter.delete("/healthCoach/:healthCoachID", async function(
+healthCoachRouter.delete("/healthCoach/:healthCoachID", async function(
   req,
   res
 ) {
@@ -64,4 +60,4 @@ healthCoachrouter.delete("/healthCoach/:healthCoachID", async function(
   });
 });
 
-module.exports = healthCoachrouter;
+module.exports = healthCoachRouter;
