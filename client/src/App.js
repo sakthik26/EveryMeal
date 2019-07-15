@@ -18,6 +18,7 @@ import Subscription from './views/subscription/Subscription'
 import Header from './components/header/Header';
 import { withStyles } from '@material-ui/styles';
 import { withRouter } from "react-router-dom";
+
 /* Defining the basic layout of the application */
 const styles = makeStyles(theme => ({
   appbar:{
@@ -41,9 +42,14 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {value: ""}
+    this.handleHeaderChange = this.handleHeaderChange.bind(this);
     }
 
-
+    handleHeaderChange() {
+      this.setState({
+        value: '1'
+      });
+    }
   render(){
     
     return (

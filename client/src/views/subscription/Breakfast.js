@@ -32,7 +32,8 @@ export default class Breakfast extends React.Component{
         this.state= {
             loading: false,
             data: [],
-            error:''
+            error:'',
+            session:'Breakfast'
         };
 
     }
@@ -42,7 +43,22 @@ export default class Breakfast extends React.Component{
             loading:true
         })
         
-        MealPlanService.getMealPlansList().then((data)=>{
+        if(this.props.tab == 0){
+             this.state.session = 'Breakfast'
+        }
+        else if(this.props.tab == 1){
+            this.state.session = 'Lunch'
+       }
+       else if(this.props.tab == 2){
+        this.state.session = 'Snacks'
+       }
+       else if(this.props.tab == 3){
+        this.state.session = 'Dinner'
+       }
+
+       
+
+        MealPlanService.getMealPlansList(this.state.session).then((data)=>{
            this.setState({
                data: [...data],
                loading:false
@@ -52,7 +68,7 @@ export default class Breakfast extends React.Component{
                 error:e
             })
         })
-    }
+      }
 
 
 
@@ -71,7 +87,8 @@ export default class Breakfast extends React.Component{
             <div className="breakfastParent">
                 <Grid container  spacing={3}>
                    {this.state.data.map((data,i) => <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
-                      <Link color="inherit" href="/details">
+                      <Link color="inherit" href={`/subscription/details/${data._id}`}>
+                        
                         <img className="breakfast" src={data.image} alt={'bf_'+i} />
                         <Typography>
                         <span>Starting:</span>

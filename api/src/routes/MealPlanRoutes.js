@@ -17,13 +17,25 @@ router.post('/eat/subscribe/',async function(req,res){
 })
 
 router.get('/eat/subscribe',async function(req,res){
-    
-      MealPlan.find({}).exec()
+     
+      var mealsess = req.query.session;
+      MealPlan.find({mealsession:mealsess}).exec()
          .then(mealplans => res.status(200).json(mealplans))
          .catch(error => res.status(500).json({
             error: 'Internal server error',
             message: error.message
          }))
+})
+
+router.get('/subscription/details/:id',async function(req,res){
+     
+    var mealPlanId = req.params.id;
+    MealPlan.find({_id:mealPlanId}).exec()
+       .then(mealPlanInfo => res.status(200).json(mealPlanInfo))
+       .catch(error => res.status(500).json({
+          error: 'Internal server error',
+          message: error.message
+       }))
 })
 
 // router.post('/user/login',async function(req,res){

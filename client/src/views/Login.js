@@ -19,6 +19,7 @@ import { withStyles } from '@material-ui/styles';
 import { withRouter } from "react-router-dom";
 import UserService from '../Services/UserService';
 import Header from '../components/header/Header';
+import { Redirect } from 'react-router';
 
 const styles = theme => ({
   '@global': {
@@ -54,7 +55,8 @@ constructor(props){
   this.state = {
     error:"",
     email:"",
-    password:""
+    password:"",
+    redirectToReferrer: false
   };
   this.handleLogin = this.handleLogin.bind(this);
   this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -75,7 +77,8 @@ handleLogin(event){
         password: this.state.password
       }
       UserService.login(user.email,user.password).then((data) => {
-        this.props.history.push('/eat');
+        this.setState({redirectToReferrer: true})
+        //this.props.history.push('/eat');
         //window.location.reload()
       }).catch((e) => {
         console.error(e);
@@ -87,6 +90,12 @@ handleLogin(event){
   
 render(){
   const {classes} = this.props;
+  const {from} = this.props.location.state ? this.props.location.state  : {from:{pathname:'/eat'}}
+
+  if(this.state.redirectToReferrer == true){
+    return <Redirect to={from} />
+  }
+ 
   return (
     <div>
     <Header/>

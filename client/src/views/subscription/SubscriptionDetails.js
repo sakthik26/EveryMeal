@@ -30,15 +30,38 @@ import breakfast_image1 from '../../images/Breakfast_option1.png'
 import breakfast_image2 from '../../images/Breakfast_option2.png'
 import breakfast_image3 from '../../images/Breakfast_option3.png'
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-
+import MealPlanService from '../../Services/MealPlanService';
+import TabContainer from '../../components/tabcontainer/TabContainer.js'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class SubscriptionDetails extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            selectedValue: 'a'
+            selectedValue: 'a',
+            loading: false,
+            data: [],
+            error:''
         };
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentWillMount(){
+        this.setState({
+            loading:true
+        })
+
+        MealPlanService.getMealPlanInfo(this.props.match.params.id).then((data)=>{
+            this.setState({
+                data: [...data],
+                loading:false
+            })
+         }).catch((e)=>{
+             this.setState({
+                 error:e
+             })
+         })
+        
     }
 
     handleChange(event){
@@ -47,17 +70,29 @@ export default class SubscriptionDetails extends React.Component{
 
     
     render(){
+
+        if(this.state.loading){
+            
+            return (
+           
+            <Grid container justify='center' spacing={3}>
+              <CircularProgress color="secondary" />
+            </Grid>)
+        }
         return(
             <div>
             <Header/>
              <Grid className='details-grid-parent' container justify='center' spacing={2}>
                     <Grid item className='details-grid-item' xs={8} sm={4}>
-                        <img className="sub-detail" src={SubscriptionDetail} alt="SubscriptionDetail" />
+                        <img className="sub-detail" src={this.state.data[0].image} alt="SubscriptionDetail" />
                     </Grid>
                     <Grid item xs={8} sm={5} >
                         <Breadcrumbs separator="›" aria-label="Breadcrumb">
                             <Link color="inherit" href="/">
                                 Home
+                            </Link>
+                            <Link color="inherit" href="/eat">
+                                Eat
                             </Link>
                             <Link color="inherit" href="">
                                 Subscriptions
@@ -65,10 +100,10 @@ export default class SubscriptionDetails extends React.Component{
                             
                         </Breadcrumbs>
                         <Typography component="h1" variant="h4">
-                          Power Breakfast Veg
+                          {this.state.data[0].mealplanname}
                         </Typography>
                         <Typography paragraph color="textSecondary">
-                         Why choose between Indian and Western cuisines when you can have the best of both? Our crepes are just as delicious as our paranthas, so let your tastebuds travel the world every morning.
+                        {this.state.data[0].description}
                         </Typography>
                         <Grid className='' container justify='center' spacing={2}>
                             <Grid item xs={6}>
@@ -85,7 +120,7 @@ export default class SubscriptionDetails extends React.Component{
                                             
                                         />      
                                          <Typography color="textSecondary">
-                                         € 19/meal
+                                         €  {this.state.data[0].startingprice}/meal
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
@@ -107,7 +142,7 @@ export default class SubscriptionDetails extends React.Component{
                                             
                                         />      
                                          <Typography color="textSecondary">
-                                         € 19/meal
+                                         € {this.state.data[0].startingprice + 3}/meal
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
@@ -116,7 +151,7 @@ export default class SubscriptionDetails extends React.Component{
                                 </Card>
                             </Grid>
                         </Grid>
-                        <Button variant="contained" color="secondary" >
+                        <Button variant="contained" color="secondary" onClick= {() => this.props.history.push('/checkout/'+this.state.data[0]._id)} >
                             Subscribe
                         </Button>
                     </Grid>
