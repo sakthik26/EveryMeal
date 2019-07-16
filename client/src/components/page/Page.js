@@ -9,8 +9,8 @@ import Footer from '../footer/Footer';
 
 const styles = theme => ({
     main: {
-        padding: 24,
-    },
+        "min-height": "1500px"
+    } 
 })
 
 export class Page extends React.Component {
@@ -35,7 +35,7 @@ export class Page extends React.Component {
             <div>
                 <Header />
 
-                <Grid className={classes.main} container spacing={2}>
+                <Grid className={classes.main} container>
 
                 {this.props.children}
 
