@@ -6,24 +6,42 @@ import App from './App';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import {Route, Link, BrowserRouter as Router} from "react-router-dom";
+import { Redirect } from 'react-router';
 import Signup from './views/Signup'
+import Login from './views/Login'
+import OrderSummary from './views/OrderSummary'
 import configureStore from './store/ConfigureStore';
 import Dashboard from './views/Dashboard';
 import SubscriptionDetails from './views/subscription/SubscriptionDetails';
 
+import UserService from './Services/UserService';
+import Subscription from './views/subscription/Subscription';
 const store = configureStore();
+
+function PrivateRoute ({component: Component, authed, ...rest}){
+  return(
+    <Route 
+      {...rest}
+      render={(props) => window.localStorage.jwtToken === undefined
+       ? <Redirect to={{pathname: '/login',state: {from:props.location}}} />
+       : <Component {...props} />
+      } />
+  )
+}
 
 const routing = (
   <Provider store={store}>
     <Router>
       <div>
-        <Route exact path="/" component= {App} />
-        <Route path="/signup" component= {Signup} />
+        <Route exact path="/signup" component= {Signup} />
+        <Route exact path="/login" component= {Login} />
+        <Route path="/eat" component= {Subscription} />
         <Route path="/dashboard" component= {Dashboard} />
-        <Route exact path="/details" component= {SubscriptionDetails} />
+        <PrivateRoute path="/checkout/:id" component= {OrderSummary} />
+        <Route exact path="/subscription/details/:id" component= {SubscriptionDetails} />
       </div>
     </Router>
-  </Provider>
+  </Provider> 
 )
 
 ReactDOM.render(routing, document.getElementById('root'));

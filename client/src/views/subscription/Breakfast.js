@@ -22,56 +22,81 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import './Breakfast.css';
+import MealPlanService from '../../Services/MealPlanService';
 import TabContainer from '../../components/tabcontainer/TabContainer.js'
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class Breakfast extends React.Component{
     constructor(props){
         super(props);
-        this.state= {};
+        this.state= {
+            loading: false,
+            data: [],
+            error:'',
+            session:'Breakfast'
+        };
 
     }
 
+    componentWillMount(){
+        this.setState({
+            loading:true
+        })
+        
+        if(this.props.tab == 0){
+             this.state.session = 'Breakfast'
+        }
+        else if(this.props.tab == 1){
+            this.state.session = 'Lunch'
+       }
+       else if(this.props.tab == 2){
+        this.state.session = 'Snacks'
+       }
+       else if(this.props.tab == 3){
+        this.state.session = 'Dinner'
+       }
+
+       
+
+        MealPlanService.getMealPlansList(this.state.session).then((data)=>{
+           this.setState({
+               data: [...data],
+               loading:false
+           })
+        }).catch((e)=>{
+            this.setState({
+                error:e
+            })
+        })
+      }
+
+
+
     render(){
+        
+        if(this.state.loading){
+            
+            return (
+            <div className="breakfastParent">
+            <Grid container justify='center' spacing={3}>
+              <CircularProgress color="secondary" />
+            </Grid></div>)
+        }
+
         return(
             <div className="breakfastParent">
-                <Grid container justify='center' spacing={3}>
-                    <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
-                      <Link color="inherit" href="/details">
-                        <img className="breakfast" src={breakfast_image1} alt="bf1" />
+                <Grid container  spacing={3}>
+                   {this.state.data.map((data,i) => <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
+                      <Link color="inherit" href={`/subscription/details/${data._id}`}>
+                        
+                        <img className="breakfast" src={data.image} alt={'bf_'+i} />
                         <Typography>
                         <span>Starting:</span>
-                        <span style={{float:'right'}}> $12/meal </span>
+                        <span style={{float:'right'}}> {data.startingprice}/meal </span>
                          
                         </Typography>
                       </Link>
-                    </Grid>
-                    <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
-                      <Link color="inherit" href="/details">
-                        <img className="breakfast" src={breakfast_image2} alt="bf2" />
-                        <Typography>
-                        <span>Starting:</span>
-                        <span style={{float:'right'}}> $14/meal </span>
-                         
-                        </Typography>
-                       </Link>
-                    </Grid>
-                    <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
-                        <img className="breakfast" src={breakfast_image3} alt="bf3" />
-                        <Typography>
-                        <span>Starting:</span>
-                        <span style={{float:'right'}}> $18/meal </span>
-                         
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
-                        <img className="breakfast" src={breakfast_image3} alt="bf4" />
-                        <Typography>
-                        <span>Starting:</span>
-                        <span style={{float:'right'}}> $19/meal </span>
-                         
-                        </Typography>
-                    </Grid>
+                    </Grid>)} 
                 </Grid>
             </div>
         )

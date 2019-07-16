@@ -16,9 +16,11 @@ import TabContainer from './components/tabcontainer/TabContainer.js'
 import './App.css';
 import Subscription from './views/subscription/Subscription'
 import Header from './components/header/Header';
+import { withStyles } from '@material-ui/styles';
+import { withRouter } from "react-router-dom";
 
 /* Defining the basic layout of the application */
-const useStyles = makeStyles(theme => ({
+const styles = makeStyles(theme => ({
   appbar:{
     backgroundColor: '#FFFF',
     color: 'rgba(0, 0, 0, 0.87)'
@@ -36,20 +38,26 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-function App() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {value: ""}
+    this.handleHeaderChange = this.handleHeaderChange.bind(this);
+    }
 
-  function handleChange(event, newValue) {
-    setValue(newValue);
-  }
-  return (
-    <div className={classes.root}>
-      <Header/>
-       <Subscription/>
+    handleHeaderChange() {
+      this.setState({
+        value: '1'
+      });
+    }
+  render(){
     
-    </div>
-  );
+    return (
+      <div>
+      
+      </div>
+    );
+   }
 }
 
-export default App;
+export default withStyles(styles)(App);

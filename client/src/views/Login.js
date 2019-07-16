@@ -14,17 +14,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios'
 import { withStyles } from '@material-ui/styles';
 import { withRouter } from "react-router-dom";
 import UserService from '../Services/UserService';
 import Header from '../components/header/Header';
-function MadeWithLove() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      
-    </Typography>
-  );
-}
+import { Redirect } from 'react-router';
 
 const styles = theme => ({
   '@global': {
@@ -53,30 +48,21 @@ const styles = theme => ({
 
 
 
-class SignUp extends React.Component {
+class Login extends React.Component {
  
 constructor(props){
   super(props);
   this.state = {
     error:"",
-    firstname:"",
-    lastname:"",
     email:"",
-    password:""
+    password:"",
+    redirectToReferrer: false
   };
-  this.handleSignup = this.handleSignup.bind(this);
-  this.handleChangeFirstName = this.handleChangeFirstName.bind(this);
-  this.handleChangeLastName = this.handleChangeLastName.bind(this);
+  this.handleLogin = this.handleLogin.bind(this);
   this.handleChangePassword = this.handleChangePassword.bind(this);
   this.handleChangeEmail = this.handleChangeEmail.bind(this);
 }
 
-handleChangeFirstName(event) {
-  this.setState({firstname:event.target.value});
-}
-handleChangeLastName(event) {
-  this.setState({lastname:event.target.value});
-}
 handleChangeEmail(event) {
   this.setState({email:event.target.value});
 }
@@ -84,18 +70,18 @@ handleChangePassword(event) {
   this.setState({password:event.target.value});
 }
 
-handleSignup(event){
+handleLogin(event){
        event.preventDefault();
       let user = {
-        firstname : this.state.firstname,
-        lastname: this.state.lastname,
         email: this.state.email,
         password: this.state.password
       }
-      UserService.register(user.firstname, user.lastname,user.email,user.password).then((data) => {
-        this.props.history.push('/eat');
+      UserService.login(user.email,user.password).then((data) => {
+        this.setState({redirectToReferrer: true})
+        //this.props.history.push('/eat');
         //window.location.reload()
       }).catch((e) => {
+        console.error(e);
         this.setState({
             error: e
         });
@@ -104,48 +90,27 @@ handleSignup(event){
   
 render(){
   const {classes} = this.props;
+  const {from} = this.props.location.state ? this.props.location.state  : {from:{pathname:'/eat'}}
+
+  if(this.state.redirectToReferrer == true){
+    return <Redirect to={from} />
+  }
+ 
   return (
     <div>
     <Header/>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5" container justify='center'>
-          Sign up
+          Login
         </Typography>
-        <form onSubmit={this.handleSignup} className={classes.form} noValidate>
+        <form onSubmit={this.handleLogin} className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstname"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                value = {this.state.firstname}
-                onChange={this.handleChangeFirstName}
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastname"
-                value = {this.state.lastname}
-                onChange={this.handleChangeLastName}
-                autoComplete="lname"
-              />
-            </Grid>
+            
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -173,12 +138,6 @@ render(){
                 autoComplete="current-password"
               />
             </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
           </Grid>
           <Button
             type="submit"
@@ -186,27 +145,17 @@ render(){
             variant="contained"
             color="primary"
             className={classes.submit}
-
           >
-            Sign Up
+            Login
           </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-              Already have an account?
-              </Link>
-              
-            </Grid>
-          </Grid>
          <div className={classes.error}> {this.state.error} </div>
         </form>
       </div>
       <Box mt={5}>
-        <MadeWithLove />
       </Box>
     </Container>
     </div>
   );}
 }
 
-export default withStyles(styles)(SignUp);
+export default withStyles(styles)(Login);

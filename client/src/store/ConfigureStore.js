@@ -21,3 +21,9 @@ export default function configureStore(initialState) {
 
   return store;
 }
+
+// import {createStore} from "redux"
+// import reducer from "../reducers"
+
+// const initialState = {}
+// export const store = createStore(reducer,initialState);
