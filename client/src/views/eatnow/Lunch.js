@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Grid} from '@material-ui/core';
+import {Link, Grid, Typography} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import './Eatnow.css'
 import lunch_image11 from '../../images/lunch1.1.png'
@@ -24,13 +24,39 @@ import lunch_image71 from '../../images/lunch7.1.png'
 import lunch_image72 from '../../images/lunch7.2.png'
 import lunch_image73 from '../../images/lunch7.3.png'
 import './Lunch.css';
+import MealService from '../../Services/MealService';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 
 export default class Lunch extends React.Component{
     constructor(props){
         super(props);
-        this.state= {};
+        // this.state= {};
+        this.state= {
+            loading: false,
+            data: [],
+            error:''
+        };
     }
+
+    componentWillMount(){
+        this.setState({
+            loading:true
+        })
+        
+        MealService.getMealsList().then((data)=>{
+           this.setState({
+               data: [...data],
+               loading:false
+           })
+        }).catch((e)=>{
+            this.setState({
+                error:e
+            })
+        })
+    }
+    
 
     render(){
         return(
@@ -43,7 +69,19 @@ export default class Lunch extends React.Component{
 
                 <Grid container spacing={9}>
                 <div class="day">Monday</div>
-                <div>
+                {this.state.data.map((data,i) => <Grid class="lunchOption" item xs={8} sm={3} style={{cursor:'pointer'}}>
+                      <Link color="inherit" href="/details">
+                        <Typography>{data.mealName} {i} </Typography>
+                        <img src={data.mealImage} alt={'bf_'+i} />
+                        <Typography>
+                        <span>Starting:</span>
+                        <span style={{float:'right'}}> {data.mealPrice}/meal </span>
+                         
+                        </Typography>
+                      </Link>
+                </Grid>)}
+
+                {/* <div>
                 <Grid class="lunchOption">
                     <Link color="inherit" href="/mealpage">
                         <div class="polaroid">
@@ -236,7 +274,7 @@ export default class Lunch extends React.Component{
                         </div>
                     </Link>    
                 </Grid>
-                </div>    
+                </div>  */}   
                 
                 
                 

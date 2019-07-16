@@ -51,6 +51,7 @@
   transform: scale(0.9, 0.9);
   transition: all 0.35s;
   flex-grow: 0;
+  vertical-align: top;
 }
 .lunchOption .polaroid:before {
   position: absolute;
