@@ -58,3 +58,8 @@ app.use(mealPlanRoute);
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
 })
+
+
+// MONGODB_URL=mongodb://localhost/everymeal_user_authentication
+// JWT_KEY=WinterIsComing
+// PORT=4000
