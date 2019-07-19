@@ -1,16 +1,10 @@
-"use strict";
-
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 import logo from '../../images/everyMealLogo.png';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import {Link} from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import UserService from '../../Services/UserService';
@@ -95,7 +89,7 @@ class Header extends React.Component {
                         Diet Consultation    
                       </MenuItem>
                     </MenuList>
-                    {window.localStorage['jwtToken'] == undefined ?   
+                    {window.localStorage['jwtToken'] === undefined ?   
                     <div>
                         <Button className = "login" onClick={this.login}>Login</Button>
                         <Button className = "signup" onClick={this.signup}>Sign Up</Button> </div>

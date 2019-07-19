@@ -1,11 +1,9 @@
-"use strict";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import {Route, Link, BrowserRouter as Router} from "react-router-dom";
+import {Route, BrowserRouter as Router} from "react-router-dom";
 import { Redirect } from 'react-router';
 import Signup from './views/Signup'
 import Login from './views/Login'
@@ -14,7 +12,6 @@ import configureStore from './store/ConfigureStore';
 import Dashboard from './views/Dashboard';
 import SubscriptionDetails from './views/subscription/SubscriptionDetails';
 
-import UserService from './Services/UserService';
 import Subscription from './views/subscription/Subscription';
 const store = configureStore();
 

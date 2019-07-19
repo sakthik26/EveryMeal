@@ -1,12 +1,9 @@
-"use strict";
-
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { withStyles } from '@material-ui/core/styles';
-import logo from '../images/everyMealLogo.png';
 
 import Page from '../components/page/Page';
 import ConsumptionGraph from '../components/charts/Chart';

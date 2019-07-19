@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { scaleBand, scaleLinear, scaleOrdinal } from 'd3-scale'
+import { scaleBand, scaleLinear } from 'd3-scale'
 import { stack } from 'd3-shape'
 import Axes from './Axes'
 import Stack from './Stack'
