@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -43,57 +44,60 @@ export class Dashboard extends React.Component {
 
         return (
             <Page>
-                <Grid className={classes.main} container spacing={2}>
-                    <Grid item xs={12}>
-                        <h1>Food Consumption</h1>
+                {window.localStorage['jwtToken'] === undefined ?
+                    <Redirect to='login' />
+                    :
+                    <Grid className={classes.main} container spacing={2}>
+                        <Grid item xs={12}>
+                            <h1>Food Consumption</h1>
 
-                        <Grid container className={classes.graphButtons} item sm={12} md={8} xl={6} justify="space-between">
-                            <Grid item>
-                                <ButtonGroup variant="contained" size="small">
-                                    <Button>Weekly</Button>
-                                    <Button disabled>Monthly</Button>
-                                </ButtonGroup>
-                            </Grid>
-                            <Grid item>
-                                <AddMealDialog label="+ Add meal" />
-                            </Grid>
-                        </Grid>
-
-                        <Grid item xl={6} md={8} sm={12}>
-                            <Box my={5}>
-                                {/*TODO: Pass propper onchange function such that api call for graph gets updated*/}
-                                <Select months={months} />
-                                <ConsumptionGraph />
-                                <Legend />
-                            </Box>
-                        </Grid>
-
-                    </Grid>
-
-                    <Grid item xs={12} md={6} xl={3}>
-                        <h2>Macronutrients</h2>
-                        <Grid container spacing={20}>
-                            {macronutrients.map(item => (
-                                <Grid key={item.index} item xs={12} sm={4}>
-                                    <ProgressCircle label={item.name} percentage={item.value} url={item.url} />
+                            <Grid container className={classes.graphButtons} item sm={12} md={8} xl={6} justify="space-between">
+                                <Grid item>
+                                    <ButtonGroup variant="contained" size="small">
+                                        <Button>Weekly</Button>
+                                        <Button disabled>Monthly</Button>
+                                    </ButtonGroup>
                                 </Grid>
-                            ))}
-                        </Grid>
-
-                    </Grid>
-
-                    <Grid item xs={12} md={6} xl={3}>
-                        <h2>Micronutrients</h2>
-                        <Grid container spacing={2}>
-                            {micronutrients.map(item => (
-                                <Grid key={item.index} item xs={12} sm={4}>
-                                    <ProgressCircle label={item.name} percentage={item.value} url={item.url} />
+                                <Grid item>
+                                    <AddMealDialog label="+ Add meal" />
                                 </Grid>
-                            ))}
+                            </Grid>
+
+                            <Grid item xl={6} md={8} sm={12}>
+                                <Box my={5}>
+                                    {/*TODO: Pass propper onchange function such that api call for graph gets updated*/}
+                                    <Select months={months} />
+                                    <ConsumptionGraph />
+                                    <Legend />
+                                </Box>
+                            </Grid>
+
                         </Grid>
-                    </Grid>
-                    
-                </Grid>
+
+                        <Grid item xs={12} md={6} xl={3}>
+                            <h2>Macronutrients</h2>
+                            <Grid container spacing={20}>
+                                {macronutrients.map(item => (
+                                    <Grid key={item.index} item xs={12} sm={4}>
+                                        <ProgressCircle label={item.name} percentage={item.value} url={item.url} />
+                                    </Grid>
+                                ))}
+                            </Grid>
+
+                        </Grid>
+
+                        <Grid item xs={12} md={6} xl={3}>
+                            <h2>Micronutrients</h2>
+                            <Grid container spacing={2}>
+                                {micronutrients.map(item => (
+                                    <Grid key={item.index} item xs={12} sm={4}>
+                                        <ProgressCircle label={item.name} percentage={item.value} url={item.url} />
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </Grid>
+
+                    </Grid>}
             </Page>
         );
 
