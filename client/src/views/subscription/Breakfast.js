@@ -88,12 +88,10 @@ export default class Breakfast extends React.Component{
                 <Grid container  spacing={3}>
                    {this.state.data.map((data,i) => <Grid item xs={8} sm={3} style={{cursor:'pointer'}}>
                       <Link color="inherit" href={`/subscription/details/${data._id}`}>
-                        
                         <img className="breakfast" src={data.image} alt={'bf_'+i} />
                         <Typography>
                         <span>Starting:</span>
                         <span style={{float:'right'}}> {data.startingprice}/meal </span>
-                         
                         </Typography>
                       </Link>
                     </Grid>)} 

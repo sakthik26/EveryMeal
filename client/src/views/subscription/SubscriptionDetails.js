@@ -38,7 +38,7 @@ export default class SubscriptionDetails extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            selectedValue: 'a',
+            selectedValue: 'Monthly',
             loading: false,
             data: [],
             error:''
@@ -113,18 +113,18 @@ export default class SubscriptionDetails extends React.Component{
                                         Monthly
                                         </Typography>
                                         <Radio
-                                            checked={this.state.selectedValue === 'a'}
+                                            checked={this.state.selectedValue === 'Monthly'}
                                             onChange={this.handleChange}
-                                            value="a"
+                                            value="Monthly"
                                             name="radio-button-demo"
                                             
                                         />      
                                          <Typography color="textSecondary">
-                                         €  {this.state.data[0].startingprice}/meal
+                                         €  {this.state.data[0].startingprice}/meal (€  {this.state.data[0].startingprice * 30}/month)
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                    <Button size="small">Learn More</Button>
+                                    {/* <Button size="small">Learn More</Button> */}
                                     </CardActions>
                                 </Card>
                             </Grid>
@@ -135,23 +135,23 @@ export default class SubscriptionDetails extends React.Component{
                                         Weekly 
                                         </Typography>
                                         <Radio
-                                            checked={this.state.selectedValue === 'b'}
+                                            checked={this.state.selectedValue === 'Weekly'}
                                             onChange={this.handleChange}
-                                            value="b"
+                                            value="Weekly"
                                             name="radio-button-demo"
                                             
                                         />      
                                          <Typography color="textSecondary">
-                                         € {this.state.data[0].startingprice + 3}/meal
+                                         € {this.state.data[0].startingprice + 3}/meal (€  {this.state.data[0].startingprice + 3 * 7}/week)
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                    <Button size="small">Learn More</Button>
+                                    {/* <Button size="small">Learn More</Button> */}
                                     </CardActions>
                                 </Card>
                             </Grid>
                         </Grid>
-                        <Button variant="contained" color="secondary" onClick= {() => this.props.history.push('/checkout/'+this.state.data[0]._id)} >
+                        <Button variant="contained" color="secondary" onClick= {() => this.props.history.push('/checkout/'+this.state.data[0]._id,{subscription: this.state.selectedValue})} >
                             Subscribe
                         </Button>
                     </Grid>

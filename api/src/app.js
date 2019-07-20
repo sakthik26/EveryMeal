@@ -39,6 +39,7 @@ const express = require('express');
 const port = process.env.PORT;
 const usersRoute = require("./routes/UserRoutes");
 const mealPlanRoute = require("./routes/MealPlanRoutes");
+const orderRoute = require("./routes/OrderRoutes")
 //require('./db/db')
 const mongoose = require("mongoose");
 const cors = require('cors')
@@ -53,13 +54,10 @@ mongoose
 app.use(express.json());
 app.use(usersRoute);
 app.use(mealPlanRoute);
-
+app.use(orderRoute);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
 })
 
 
-// MONGODB_URL=mongodb://localhost/everymeal_user_authentication
-// JWT_KEY=WinterIsComing
-// PORT=4000

@@ -1,0 +1,39 @@
+.summary-form-root{
+    flex-wrap: nowrap;
+    flex-direction: column;
+    display: flex;
+}
+
+.summary-form-control{
+    min-width: 200px !important;
+    padding: 20px 0px !important;
+}
+
+.summary-form-control .address{
+    border-bottom: 1px solid #000;
+    padding-bottom:5px;
+}
+
+.summary-form-root .change-address{
+    align-self: center;
+} 
+
+.summary-form-control.address-field{
+    width: 100%;
+}
+
+.summary-form-root .pay{
+align-self: flex-end;
+}
+.summary-title{
+    display: block!important;
+}
+
+.summary-form-root .order-total{
+    margin-top: 10%;
+    border-top: 1px solid #949494;
+}
+
+.order-total .pay-amount{
+   text-align: right;
+}
