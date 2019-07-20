@@ -5,103 +5,131 @@ import { makeStyles } from '@material-ui/core/styles';
 import { typography } from '@material-ui/system';
 import './Mealpage.css'
 import Header from '../../components/header/Header';
-import lunch_image11 from '../../images/Week1/Day1/lunch1.1.png'
 import CustomizationForm from '../../components/forms/CustomizationForm.js'
+import MealService from '../../Services/MealService';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-
-export default class Mealpage extends React.Component{
+export default class SubscriptionDetails extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            selectedValue: 'a'
+            selectedValue: 'a',
+            loading: false,
+            data: [],
+            error:''
         };
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentWillMount(){
+        this.setState({
+            loading:true
+        })
+
+        MealService.getMealInfo(this.props.match.params.id).then((data)=>{
+            this.setState({
+                data: [...data],
+                loading:false
+            })
+         }).catch((e)=>{
+             this.setState({
+                 error:e
+             })
+         })
+        
     }
 
     handleChange(event){
         this.setState({selectedValue: event.target.value})
     }
+
+    
     render(){
+
+        if(this.state.loading){
+            
+            return (
+           
+            <Grid container justify='center' spacing={3}>
+              <CircularProgress color="secondary" />
+            </Grid>)
+        }
         return(
             <div>
-                <Header/>
-                <Grid className='details-grid-parent' container justify='center' spacing={2}>
-                    <Grid className="left" item xs={4} sm={4}>
+            <Header/>
+             <Grid className='details-grid-parent' container justify='center' spacing={2}>
+                    <Grid item className='left' xs={4} sm={4}>
                         <Card>
-                            <CardContent className="nutritionard">
-                                <img className="lunch_image1" src={lunch_image11} alt="MangoChicken" />
+                            <CardContent className="nutritionCard">
+                                <img className="image" src={this.state.data[0].mealImage} alt="Meal Image"/>
                                 <Typography variant="body2" gutterBottom>
-                                    <ul>
-                                        <li>Gluten-Free</li>
-                                        <li>Dairy-Free</li>
-                                        <li>Paleo</li>
-                                        <li>Soy-Free</li>
-                                        <li>Diabetes-Friendly</li>
-                                    </ul>
+                                {/* {this.state.data[0].mealFilter} */}
+                                    {/* {this.state.data[0].mealFilter.map((data,i) => <ul>
+                                        <li>{data.mealFilter[i]}</li>)} 
+                                    </ul>)} */}
+                                    {/* <ul>
+                                        <li>{this.state.data[0].mealFilter}</li>
+                                    </ul> */}
                                 </Typography>
-                                
+
                                 <Grid className="macros">
-                                    <Typography variant="button" gutterBottom>
-                                        Nutrition per serving
-                                    </Typography>
+                                    <Typography gutterBottom>Nutrition per serving</Typography>
                                     <table className="macrosT">
                                         <tr>
-                                            <th>410Cal</th>
-                                            <th>44g</th>
-                                            <th>10g</th>
-                                            <th>38g</th>
-                                            <th>5g</th>
+                                            <th>{this.state.data[0].mealNutrition[0].calories}Cal</th>
+                                            <th>{this.state.data[0].mealNutrition[0].protein}g</th>
+                                            <th>{this.state.data[0].mealNutrition[0].fat}g</th>
+                                            <th>{this.state.data[0].mealNutrition[0].carbs}g</th>                    
+                                            <th>{this.state.data[0].mealNutrition[0].fibre}g</th>
                                         </tr>
-                                        <tr>
+                                        <tr>                                          
                                             <td>Calories</td>
                                             <td>Protein</td>
                                             <td>Fat</td>
                                             <td>Carbs</td>
                                             <td>Fibre</td>
-                                        </tr>
+                                      </tr>
                                     </table>
                                 </Grid>
                             </CardContent>
                         </Card>
                     </Grid>
-                    
-                    <Grid className="right" item xs={4} sm={5}>
-                    
+                    <Grid className="right" item xs={4} sm={5} >
                         <Breadcrumbs separator="›" aria-label="Breadcrumb">
                             <Link color="inherit" href="/">
                                 Home
                             </Link>
-                            <Link color="inherit" href="">
-                                Meal of the Week
+                            <Link color="inherit" href="/eat">
+                                Eat
                             </Link>
-                            
+                            <Link color="inherit" href="/eatnow">
+                                Menu of the Week
+                            </Link>
                         </Breadcrumbs>
+
                         <Grid>
                             <Typography variant="h6" gutterBottom>
-                                Mango chicken salad with ginger dressing
+                                {this.state.data[0].mealName}
                             </Typography>
                             <Typography variant="h6" color="secondary" gutterBottom>
-                            € 14
+                                € {this.state.data[0].mealPrice}
                             </Typography>
                             <hr></hr>
                             <Typography className="override"  color="textSecondary" gutterBottom>
-                                Robust yet light, this paleo and gluten-free chicken salad is packed with our favorite sweet and spicy Southeast Asian flavors.
+                                {this.state.data[0].mealDescription}
                             </Typography>
                         </Grid>
-                       
-                        <Grid className="form">
+            
+                        <Grid className='form'>
                             <CustomizationForm></CustomizationForm>
-                        </Grid>    
-                                          
-                        <Button variant="contained" color="secondary" >
-                            Try now!
-                        </Button>
-                        <Button variant="contained" color="secondary" >
-                            Add to cart 
-                            <Icon color="white">add_circle</Icon>
-                        </Button>  
+                            <Button variant="contained" color="secondary">Try Now!</Button>
+                            <Button variant="contained" color="secondary" >
+                                Add to cart
+                                <Icon color="white">add_circle</Icon>
+                            </Button>
+                        </Grid>
                     </Grid>
-                </Grid>
+             </Grid>
             </div>
         )
     }

@@ -2,16 +2,16 @@
 
 import HttpService from "./HttpService";
 
-export default class MealService {
+export default class ShoppingCart {
 
     constructor() {
     }
 
     static baseURL() {return "http://localhost:4000"; }
 
-    static getMealsList(sess) {
+    static getShoppingList(sess) {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${MealService.baseURL()}/eat/eatnow?session=`+sess, function(data) {
+            HttpService.get(`${ShoppingCartService.baseURL()}/eat/cart/`, function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);
@@ -19,9 +19,9 @@ export default class MealService {
         });
     }
 
-    static getMealInfo(id){
+    static getShoppingInfo(id){
         return new Promise((resolve, reject) => {
-            HttpService.get(`${MealService.baseURL()}/eat/eatnow/mealpage/`+id, function(data) {
+            HttpService.get(`${ShoppingCartService.baseURL()}/eat/cart/`+id, function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);

@@ -8,6 +8,7 @@ import subs from '../../images/everymeal_subscription.png'
 import TabContainer from '../../components/tabcontainer/TabContainer.js'
 import Lunch from './Lunch.js'
 import Page from '../../components/page/Page.js'
+import Header from '../../components/header/Header'
 
 export default class Eatnow extends React.Component {
     constructor(props){
@@ -41,8 +42,8 @@ export default class Eatnow extends React.Component {
     }
     render(){
         return(
-            <Page>
                 <div className="root">
+                    <Header/>
                     <Grid container spacing={0}>
                     <Grid item xs={6}>
                         <img className="eatnow" src={eatnow} alt="eatnow" onClick={this.handleMealService}/>
@@ -104,13 +105,13 @@ export default class Eatnow extends React.Component {
                                     <Tab label="Lunch" />
                                     <Tab label="Dinner"/>
                                 </Tabs>
-                                {this.state.value === 0 && <TabContainer><Lunch/></TabContainer>}
-                                {this.state.value === 1 && <TabContainer><Lunch/></TabContainer>}
-                                {this.state.value === 2 && <TabContainer><Lunch/></TabContainer>}
+                                {this.state.value === 0 && <TabContainer><Lunch tab={this.state.value}/></TabContainer>}
+                                {this.state.value === 1 && <TabContainer><Lunch tab={this.state.value}/></TabContainer>}
+                                {this.state.value === 2 && <TabContainer><Lunch tab={this.state.value}/></TabContainer>}
                             </Grid> 
                         </Grid> : 'Eat Now' }
                 </div>
-            </Page>    
+            
         );
     }
 }

@@ -32,11 +32,11 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 export default class Lunch extends React.Component{
     constructor(props){
         super(props);
-        // this.state= {};
         this.state= {
             loading: false,
             data: [],
-            error:''
+            error:'',
+            session:'Lunch'
         };
     }
 
@@ -44,8 +44,19 @@ export default class Lunch extends React.Component{
         this.setState({
             loading:true
         })
+
+        if(this.props.tab == 0){
+            this.state.session = 'Breakfast'
+        }
+        else if(this.props.tab == 1){
+            this.state.session = 'Lunch'
+        }   
+        else if(this.props.tab == 2){
+            this.state.session = 'Dinner'
+        }
+
         
-        MealService.getMealsList().then((data)=>{
+        MealService.getMealsList(this.state.session).then((data)=>{
            this.setState({
                data: [...data],
                loading:false
@@ -59,6 +70,16 @@ export default class Lunch extends React.Component{
     
 
     render(){
+
+        if(this.state.loading){
+            
+            return (
+            <div className="lunchParent">
+            <Grid container justify='center' spacing={3}>
+              <CircularProgress color="secondary" />
+            </Grid></div>)
+        }
+
         return(
             <div className="lunchParent">
                 <div class="topnav">
@@ -70,16 +91,14 @@ export default class Lunch extends React.Component{
                 <Grid container spacing={9}>
                 <div class="day">Monday</div>
                 {this.state.data.map((data,i) => <Grid class="lunchOption" item xs={8} sm={3} style={{cursor:'pointer'}}>
-                      <Link color="inherit" href="/details">
-                        <Typography>{data.mealName} {i} </Typography>
-                        <img src={data.mealImage} alt={'bf_'+i} />
-                        <Typography>
-                        <span>Starting:</span>
-                        <span style={{float:'right'}}> {data.mealPrice}/meal </span>
-                         
-                        </Typography>
-                      </Link>
+                    <Link color="inherit" href={`/eatnow/mealpage/${data._id}`}>
+                    <div class="polaroid">
+                        <img className="lunchImage" src={data.mealImage} alt={'lunch_'+i} />
+                        <div class="caption">{data.mealName}</div>
+                    </div>   
+                    </Link>
                 </Grid>)}
+                {/* {this.state.data.map((data,i) =>)} */}
 
                 {/* <div>
                 <Grid class="lunchOption">

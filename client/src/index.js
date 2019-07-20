@@ -13,8 +13,23 @@ import SubscriptionDetails from './views/subscription/SubscriptionDetails';
 import Eatnow from './views/eatnow/Eatnow';
 import Eatnow2 from './views/eatnow/Eatnow2';
 import Mealpage from './views/eatnow/Mealpage';
+import Login from './views/Login';
+import OrderSummary from './views/OrderSummary';
+import Subscription from './views/subscription/Subscription';
+import { Redirect } from 'react-router';
 
 const store = configureStore();
+
+function PrivateRoute ({component: Component, authed, ...rest}){
+  return(
+    <Route 
+      {...rest}
+      render={(props) => window.localStorage.jwtToken === undefined
+       ? <Redirect to={{pathname: '/login',state: {from:props.location}}} />
+       : <Component {...props} />
+      } />
+  )
+}
 
 const routing = (
   <Provider store={store}>
@@ -23,9 +38,12 @@ const routing = (
         <Route exact path="/" component= {App} />
         <Route path="/signup" component= {Signup} />
         <Route path="/dashboard" component= {Dashboard} />
-        <Route exact path="/details" component= {SubscriptionDetails} />
+        <Route exact path="/login" component= {Login} />
+        <PrivateRoute path="/checkout/:id" component= {OrderSummary} />
+        <Route path="/eat" component= {Subscription} />
+        <Route exact path="/subscription/details/:id" component= {SubscriptionDetails} />
         <Route exact path="/eatnow" component= {Eatnow} />
-        <Route exact path="/mealpage" component= {Mealpage} />
+        <Route exact path="/eatnow/mealpage/:id" component= {Mealpage} />
         <Route exact path="/eatnowpage2" component= {Eatnow2} />
         
       </div>

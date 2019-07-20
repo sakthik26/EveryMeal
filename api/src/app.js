@@ -2,6 +2,7 @@ const express = require('express');
 const port = process.env.PORT;
 const usersRoute = require("./routes/UserRoutes");
 const mealsRoute = require("./routes/MealRoutes");
+const shoppingCartRoute = require("./routes/ShoppingCartRoutes");
 
 const mongoose = require("mongoose");
 const cors = require('cors')
@@ -16,6 +17,7 @@ mongoose
 app.use(express.json());
 app.use(usersRoute);
 app.use(mealsRoute);
+app.use(shoppingCartRoute);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
