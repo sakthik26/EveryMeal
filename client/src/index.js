@@ -10,6 +10,7 @@ import Login from './views/Login'
 import OrderSummary from './views/OrderSummary'
 import configureStore from './store/ConfigureStore';
 import Dashboard from './views/Dashboard';
+import MyAccount from './views/MyAccount';
 import SubscriptionDetails from './views/subscription/SubscriptionDetails';
 
 import Subscription from './views/subscription/Subscription';
@@ -34,6 +35,7 @@ const routing = (
         <Route exact path="/login" component= {Login} />
         <Route path="/eat" component= {Subscription} />
         <Route path="/dashboard" component= {Dashboard} />
+        <Route path="/account" component= {MyAccount} />
         <PrivateRoute path="/checkout/:id" component= {OrderSummary} />
         <Route exact path="/subscription/details/:id" component= {SubscriptionDetails} />
       </div>

@@ -76,7 +76,7 @@ export class Dashboard extends React.Component {
 
                         <Grid item xs={12} md={6} xl={3}>
                             <h2>Macronutrients</h2>
-                            <Grid container spacing={20}>
+                            <Grid container spacing={10}>
                                 {macronutrients.map(item => (
                                     <Grid key={item.index} item xs={12} sm={4}>
                                         <ProgressCircle label={item.name} percentage={item.value} url={item.url} />
