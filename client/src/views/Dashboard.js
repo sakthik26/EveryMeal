@@ -10,6 +10,7 @@ import Page from '../components/page/Page';
 import ConsumptionGraph from '../components/charts/Chart';
 import Select from '../components/buttons/SimpleSelect';
 import AddMealDialog from '../components/dialogs/AddMealDialog';
+import DashboardMealForm from '../components/dialogs/DashboardMealForm';
 import ProgressCircle from '../components/charts/ProgessCircle';
 import Legend from '../components/charts/Legend'
 
