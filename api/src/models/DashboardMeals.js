@@ -10,7 +10,7 @@ const DashboardMeals = new mongoose.Schema({
         required: true
     },
     type: String,
-    description: String,
+    title: String,
     calories: {
         type: Number,
         required: true

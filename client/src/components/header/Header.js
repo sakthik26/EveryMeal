@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
-import UserService from '../../Services/UserService';
 import UserMenu from './UserMenu';
 
 const styles = theme => ({
@@ -82,7 +81,6 @@ class Header extends React.Component {
                         </div>
                         :
                         <UserMenu />
-                        // <Button className = "logout" onClick={this.logOut}>Logout</Button>
                     }
                 </Toolbar>
             </AppBar>

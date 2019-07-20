@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormDatePicker from './FormDatePicker';
@@ -11,13 +11,13 @@ class DashboardMealForm extends React.Component {
 
         this.state = {
             title: '',
-            calories: '',
-            carbs: '',
-            fats: '',
-            proteins: '',
-            calcium: '',
-            iron: '',
-            selenium: '',
+            calories: 0,
+            carbs: 0,
+            fats: 0,
+            proteins: 0,
+            calcium: 0,
+            iron: 0,
+            selenium: 0,
             date: new Date(),
         };
 
@@ -33,42 +33,42 @@ class DashboardMealForm extends React.Component {
 
     }
 
-    handleChangeTitle(value) {
-        this.setState(Object.assign({}, this.state, { title: value }));
+    handleChangeTitle(event) {
+        this.setState({title: event.target.value});
     }
 
-    handleChangeCalories(value) {
-        this.setState(Object.assign({}, this.state, { calories: value }));
+    handleChangeCalories(event) {
+        this.setState({calories: event.target.value});
     }
 
-    handleChangeCarbs(value) {
-        this.setState(Object.assign({}, this.state, { carbs: value }));
+    handleChangeCarbs(event) {
+        this.setState({carbs: event.target.value});
     }
 
-    handleChangeFats(value) {
-        this.setState(Object.assign({}, this.state, { fats: value }));
+    handleChangeFats(event) {
+        this.setState({fats: event.target.value});
     }
 
-    handleChangeProteins(value) {
-        this.setState(Object.assign({}, this.state, { proteins: value }));
+    handleChangeProteins(event) {
+        this.setState({proteins: event.target.value});
     }
 
-    handleChangeCalcium(value) {
-        this.setState(Object.assign({}, this.state, { calcium: value }));
+    handleChangeCalcium(event) {
+        this.setState({calcium: event.target.value});
     }
 
-    handleChangeIron(value) {
-        this.setState(Object.assign({}, this.state, { iron: value }));
+    handleChangeIron(event) {
+        this.setState({iron: event.target.value});
     }
 
-    handleChangeSelenium(value) {
-        this.setState(Object.assign({}, this.state, { selenium: value }));
+    handleChangeSelenium(event) {
+        this.setState({selenium: event.target.value});
     }
 
     handleSubmit(event) {
         event.preventDefault();
 
-        let meal = {};
+        let meal = {macronutrients: {},micronutrients: {}};
 
         meal.title = this.state.title;
         meal.calories = this.state.calories;
@@ -97,8 +97,7 @@ class DashboardMealForm extends React.Component {
                     className="md-row"
                     required={true}
                     value={this.state.title}
-                    onChange={this.handleChangeTitle}
-                    errorText="Title must be specified" /><br />
+                    onChange={this.handleChangeTitle}/><br />
                 <TextField
                     id="CaloriesField"
                     label="Calories"
@@ -106,9 +105,7 @@ class DashboardMealForm extends React.Component {
                     required={true}
                     value={this.state.calories}
                     onChange={this.handleChangeCalories}
-                    margin="normal"
-                    errorText="Calories must be specified"
-                /><br />
+                    margin="normal"/><br />
                 <h5>Macronutrients (optional)</h5>
                 <TextField
                     id="CarbsField"
@@ -158,9 +155,8 @@ class DashboardMealForm extends React.Component {
                     value={this.state.iron}
                     onChange={this.handleChangeIron}
                     margin="normal"
-                /><br/><br/>
-                <Button id="submit" type="submit"
-                     primary className="md-cell md-cell--2">Submit</Button>
+                /><br /><br />
+                <Button id="submit" type="submit">Submit</Button>
             </form>
         );
     }

@@ -3,7 +3,7 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import './Breakfast.css';
-import MealPlanService from '../../Services/MealPlanService';
+import MealPlanService from '../../services/MealPlanService';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class Breakfast extends React.Component{
