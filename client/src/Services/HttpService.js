@@ -92,7 +92,13 @@ export default class HttpService {
             //}
         }).then((resp) => {
             if(resp && resp.error || resp.errmsg || resp._message) {
-                onError(resp.error || resp._message || resp.errmsg);
+                if(resp._message){
+                    onError(resp);
+                }
+                else{
+                    onError(resp.error || resp._message || resp.errmsg);
+                }
+                
             }
             else {
                 if(resp && resp['user'] && resp['user']['tokens'].length>0) {

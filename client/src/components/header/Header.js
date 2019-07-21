@@ -7,6 +7,7 @@ import everymeal from '../../images/everymeal.png';
 import {AppBar, Toolbar, Button, MenuList, MenuItem} from '@material-ui/core/';
 import {Link} from 'react-router-dom';
 import UserService from '../../services/UserService';
+import UserMenu from './UserMenu'
 
 const styles = theme => ({
     appbar: {
@@ -21,6 +22,7 @@ const styles = theme => ({
     logo: {
         width: '75px',
         height: '50px',
+        cursor:'pointer'
     },
     link: {
         margin: theme.spacing(1),
@@ -78,26 +80,29 @@ class Header extends React.Component {
         return (
             <AppBar className={classes.appbar} position="static">
                 <Toolbar>
-                    <a href="/">
+                <a href="/eat/eatnow">
                         <img className={classes.logo} src={logo} alt="logo" />
                     </a>
-                    <img className={classes.title} src={everymeal} alt="everymeal" />    
-                    
-
+                    <img className={classes.title} src={everymeal} alt="everymeal" />                 
+                    {/* <Tabs className={classes.tabs}>
+                        <Tab label="Eat" />
+                        <Tab label="Diet Consultation" />
+                    </Tabs> */}
                    <MenuList className={classes.menulist}>
                        <MenuItem className={classes.horizontalmenu} component={Link} to="/eat/eatnow">
                         Eat
                        </MenuItem>
-                       <MenuItem className={classes.horizontalmenu} component={Link} to="/consultation">
-                        Diet Consultation    
+                        <MenuItem className={classes.horizontalmenu} component={Link} to="/consultation">
+                            Diet Consultation
                       </MenuItem>
                     </MenuList>
-                    {window.localStorage['jwtToken'] == undefined ?   
-                    <div>
-                        <Button className = "login" onClick={this.login}>Login</Button>
-                        <Button className = "signup" onClick={this.signup}>Sign Up</Button> </div>
-                    : 
-                        <Button className = "logout" onClick={this.logOut}>Logout</Button>
+                    {window.localStorage['jwtToken'] === undefined ?
+                        <div>
+                            <Button className="login" onClick={this.login}>Login</Button>
+                            <Button className="signup" onClick={this.signup}>Sign Up</Button>
+                        </div>
+                        :
+                        <UserMenu />
                     }
                 </Toolbar>
             </AppBar>

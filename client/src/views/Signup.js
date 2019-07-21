@@ -45,6 +45,10 @@ const styles = theme => ({
   submit: {
     marginTop: '10%',
   },
+  error:{
+    color:'red',
+    marginTop:'1%'
+  }
 });
 
 
@@ -92,11 +96,19 @@ handleSignup(event){
         this.props.history.push('/eat/eatnow');
         //window.location.reload()
       }).catch((e) => {
-        this.setState({
-            error: e
-        });
+        var errorField =  Object.keys(e.errors);
+        var erroMsg = '';
+        if(errorField.length>0){
+          errorField = errorField[0]
+          erroMsg= e.errors[errorField].message.replace('Path ','').replace('firstname','First Name').replace('lastname','Last Name').replace(/[`]+/g, '');
+          this.setState({
+            error: erroMsg
+        });    
+        }
       })
-}
+        
+      }
+
   
 render(){
   const {classes} = this.props;
@@ -188,7 +200,7 @@ render(){
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
               Already have an account?
               </Link>
               

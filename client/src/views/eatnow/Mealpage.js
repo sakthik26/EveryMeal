@@ -79,13 +79,11 @@ export default class SubscriptionDetails extends React.Component{
                             <CardContent className="nutritionCard">
                                 <img className="image" src={this.state.data[0].mealImage} alt="Meal Image"/>
                                 <Typography variant="body2" gutterBottom>
-                                {/* {this.state.data[0].mealFilter} */}
-                                    {/* {this.state.data[0].mealFilter.map((data,i) => <ul>
-                                        <li>{data.mealFilter[i]}</li>)} 
-                                    </ul>)} */}
-                                    {/* <ul>
-                                        <li>{this.state.data[0].mealFilter}</li>
-                                    </ul> */}
+                                <ul>
+                                {Object.keys(this.state.data[0].mealFilter[0]).forEach((data,i) =>
+                                       <li>{data}</li>)
+                                }
+                                </ul>
                                 </Typography>
 
                                 <Grid className="macros">

@@ -12,6 +12,8 @@ import { withStyles } from '@material-ui/styles';
 import UserService from '../services/UserService';
 import Header from '../components/header/Header';
 import { Redirect } from 'react-router';
+import MySnackbarContentWrapper from '../components/snackbar/SnackBar';
+import Snackbar from '@material-ui/core/Snackbar';
 
 const styles = theme => ({
   '@global': {
@@ -36,6 +38,10 @@ const styles = theme => ({
   submit: {
     marginTop: '10%',
   },
+  error:{
+    color:'red',
+    marginTop:'1%'
+  }
 });
 
 
@@ -48,11 +54,13 @@ constructor(props){
     error:"",
     email:"",
     password:"",
-    redirectToReferrer: false
+    redirectToReferrer: false,
+    openSnack: false,
   };
   this.handleLogin = this.handleLogin.bind(this);
   this.handleChangePassword = this.handleChangePassword.bind(this);
   this.handleChangeEmail = this.handleChangeEmail.bind(this);
+  this.handleSnackClose = this.handleSnackClose.bind(this);
 }
 
 handleChangeEmail(event) {
@@ -73,11 +81,19 @@ handleLogin(event){
         //this.props.history.push('/eat');
         //window.location.reload()
       }).catch((e) => {
-        console.error(e);
         this.setState({
-            error: e
+           error:e
         });
       })
+}
+
+handleSnackClose(e,reason){
+  if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({openSnack:false});
+
 }
   
 render(){
@@ -143,8 +159,6 @@ render(){
          <div className={classes.error}> {this.state.error} </div>
         </form>
       </div>
-      <Box mt={5}>
-      </Box>
     </Container>
     </div>
   );}
