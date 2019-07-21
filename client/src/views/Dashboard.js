@@ -33,14 +33,14 @@ export class Dashboard extends React.Component {
         //TODO: Change months and nutrients such that it reflects data available in api response
         const months = [{ id: 201906, name: "June 2019" }, { id: 201905, name: "May 2019" }, { id: 201904, name: "April 2019" }, { id: 201903, name: "March 2019" }]
         const macronutrients = [
-            { index: 0, name: "Fats", value: 0.75, url: Fats },
-            { index: 1, name: "Proteins", value: 0.3, url: Proteins },
-            { index: 2, name: "Carbohydrates", value: 0.2, url: Carbs }]
+            { index: 0, name: "Fats", value: 0.8, url: Fats },
+            { index: 1, name: "Proteins", value: 0.6, url: Proteins },
+            { index: 2, name: "Carbohydrates", value: 0.7, url: Carbs }]
 
         const micronutrients = [
-            { index: 0, name: "Iron", value: 0.11111, url: Iron },
-            { index: 1, name: "Calcium", value: 0.89, url: Calcium },
-            { index: 2, name: "Selenium", value: 0.32, url: Selenium }]
+            { index: 0, name: "Iron", value: 0.4, url: Iron },
+            { index: 1, name: "Calcium", value: 0.633, url: Calcium },
+            { index: 2, name: "Selenium", value: 0.211, url: Selenium }]
 
         return (
             <Page>

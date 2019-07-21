@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/styles';
-import UserService from '../Services/UserService';
+import UserService from '../services/UserService';
 import Header from '../components/header/Header';
 function MadeWithLove() {
   return (

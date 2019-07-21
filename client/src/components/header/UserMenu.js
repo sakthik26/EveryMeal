@@ -3,7 +3,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import AccountCircle from '@material-ui/icons/AccountCircleSharp';
 import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
-import UserService from '../../Services/UserService';
+import UserService from '../../services/UserService';
 import { Link } from 'react-router-dom';
 
 

@@ -12,7 +12,7 @@ import breakfast_image1 from '../../images/Breakfast_option1.png'
 import breakfast_image2 from '../../images/Breakfast_option2.png'
 import breakfast_image3 from '../../images/Breakfast_option3.png'
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import MealPlanService from '../../Services/MealPlanService';
+import MealPlanService from '../../services/MealPlanService';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class SubscriptionDetails extends React.Component{
