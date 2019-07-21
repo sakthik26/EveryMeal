@@ -1,11 +1,6 @@
-"use strict";
-
 import HttpService from "./HttpService";
 
 export default class MealPlanService {
-
-    constructor() {
-    }
 
     static baseURL() {return "http://localhost:4000"; }
 
