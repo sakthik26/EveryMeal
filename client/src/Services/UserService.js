@@ -19,6 +19,16 @@ export default class UserService {
         });
     }
 
+    static getUser() {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${UserService.baseURL()}/user/me`, function(data) {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
     static login(email, password) {
         return new Promise((resolve, reject) => {
             HttpService.post(`${UserService.baseURL()}/user/login`, {
@@ -31,6 +41,8 @@ export default class UserService {
             });
         });
     }
+
+    
 
     static logout(){
         return new Promise((resolve, reject) => {

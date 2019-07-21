@@ -82,7 +82,7 @@ handleLogin(event){
   
 render(){
   const {classes} = this.props;
-  const {from} = this.props.location.state ? this.props.location.state  : {from:{pathname:'/eat'}}
+  const {from} = this.props.location.state ? this.props.location.state  : {from:{pathname:'/eat/eatnow'}}
 
   if(this.state.redirectToReferrer === true){
     return <Redirect to={from} />

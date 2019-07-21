@@ -38,25 +38,32 @@ class Header extends React.Component {
         this.state = {
             value: ''
         };
-        this.handleChange = this.handleChange.bind(this)
+
+        this.logOut = this.logOut.bind(this)
         this.login = this.login.bind(this)
         this.signup = this.signup.bind(this)
     }
-    handleChange() {
-        this.setState({
-            value: '1'
-        });
-    }
+    
 
-    login() {
-        window.location = "/login";
-        this.handleChange()
-    }
+     logOut(){
+        UserService.logout().then((data) => {
+          window.location = "/login";
+        }).catch((e) => {
+          window.location = "/login";
+          console.error(e);
+        })
+      }
+      
+     login(){
+          window.location = "/login";
+         
+      }
+      
+     signup(){
+          window.location = "/signup";
+         
+      }
 
-    signup() {
-        window.location = "/signup";
-        this.handleChange()
-    }
 
     render() {
         const { classes } = this.props;
@@ -64,11 +71,14 @@ class Header extends React.Component {
         return (
             <AppBar className={classes.appbar} position="static">
                 <Toolbar>
-                    <img className={classes.logo} src={logo} alt="logo" />
-
-                    <MenuList className={classes.menulist}>
-                        <MenuItem className={classes.horizontalmenu} component={Link} to="/eat">
-                            Eat
+                    <img className={classes.logo} src={logo} alt="logo" />                    
+                    {/* <Tabs className={classes.tabs}>
+                        <Tab label="Eat" />
+                        <Tab label="Diet Consultation" />
+                    </Tabs> */}
+                   <MenuList className={classes.menulist}>
+                       <MenuItem className={classes.horizontalmenu} component={Link} to="/eat/eatnow">
+                        Eat
                        </MenuItem>
                         <MenuItem className={classes.horizontalmenu} component={Link} to="/consultation">
                             Diet Consultation
