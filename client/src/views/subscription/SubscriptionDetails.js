@@ -91,8 +91,8 @@ export default class SubscriptionDetails extends React.Component{
                             <Link color="inherit" href="/">
                                 Home
                             </Link>
-                            <Link color="inherit" href="/eat">
-                                Eat
+                            <Link color="inherit" href="/eat/subscription">
+                                Subscriptions
                             </Link>
                             <Link color="inherit" href="">
                                 Subscriptions

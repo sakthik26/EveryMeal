@@ -93,7 +93,7 @@ handleSignup(event){
         password: this.state.password
       }
       UserService.register(user.firstname, user.lastname,user.email,user.password).then((data) => {
-        this.props.history.push('/eat');
+        this.props.history.push('/eat/eatnow');
         //window.location.reload()
       }).catch((e) => {
         this.setState({
