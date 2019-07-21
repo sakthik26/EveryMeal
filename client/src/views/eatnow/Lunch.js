@@ -1,86 +1,94 @@
-import React from 'react';
-import {Link, Grid, Typography} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import './Eatnow.css'
+import React from "react";
+import { Link, Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import "./Eatnow.css";
 
-import './Lunch.css';
-import MealService from '../../services/MealService';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import "./Lunch.css";
+import MealService from "../../Services/MealService";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
+export default class Lunch extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+      data: [],
+      error: "",
+      session: "Lunch"
+    };
+  }
 
+  componentWillMount() {
+    this.setState({
+      loading: true
+    });
 
-export default class Lunch extends React.Component{
-    constructor(props){
-        super(props);
-        this.state= {
-            loading: false,
-            data: [],
-            error:'',
-            session:'Lunch'
-        };
+    if (this.props.tab == 0) {
+      this.state.session = "Breakfast";
+    } else if (this.props.tab == 1) {
+      this.state.session = "Lunch";
+    } else if (this.props.tab == 2) {
+      this.state.session = "Dinner";
     }
 
-    componentWillMount(){
+    MealService.getMealsList(this.state.session)
+      .then(data => {
         this.setState({
-            loading:true
-        })
+          data: [...data],
+          loading: false
+        });
+      })
+      .catch(e => {
+        this.setState({
+          error: e
+        });
+      });
+  }
 
-        if(this.props.tab == 0){
-            this.state.session = 'Breakfast'
-        }
-        else if(this.props.tab == 1){
-            this.state.session = 'Lunch'
-        }   
-        else if(this.props.tab == 2){
-            this.state.session = 'Dinner'
-        }
-
-        
-        MealService.getMealsList(this.state.session).then((data)=>{
-           this.setState({
-               data: [...data],
-               loading:false
-           })
-        }).catch((e)=>{
-            this.setState({
-                error:e
-            })
-        })
+  render() {
+    if (this.state.loading) {
+      return (
+        <div className="lunchParent">
+          <Grid container justify="center" spacing={3}>
+            <CircularProgress color="secondary" />
+          </Grid>
+        </div>
+      );
     }
-    
 
-    render(){
+    return (
+      <div className="lunchParent">
+        <div class="topnav">
+          <a>&lt;</a>
+          <a>Week of June 23</a>
+          <a href="/eatnowpage2">&gt;</a>
+        </div>
 
-        if(this.state.loading){
-            
-            return (
-            <div className="lunchParent">
-            <Grid container justify='center' spacing={3}>
-              <CircularProgress color="secondary" />
-            </Grid></div>)
-        }
-
-        return(
-            <div className="lunchParent">
-                <div class="topnav">
-                    <a>&lt;</a>
-                    <a>Week of June 23</a>
-                    <a href="/eatnowpage2">&gt;</a>
+        <Grid container spacing={9}>
+          <div class="day">Monday</div>
+          {this.state.data.map((data, i) => (
+            <Grid
+              class="lunchOption"
+              item
+              xs={8}
+              sm={3}
+              style={{ cursor: "pointer" }}
+            >
+              <Link color="inherit" href={`/eatnow/mealpage/${data._id}`}>
+                <div class="polaroid">
+                  <img
+                    className="lunchImage"
+                    src={data.mealImage}
+                    alt={"lunch_" + i}
+                  />
+                  <div class="caption">{data.mealName}</div>
                 </div>
+              </Link>
+            </Grid>
+          ))}
+          {/* {this.state.data.map((data,i) =>)} */}
 
-                <Grid container spacing={9}>
-                <div class="day">Monday</div>
-                {this.state.data.map((data,i) => <Grid class="lunchOption" item xs={8} sm={3} style={{cursor:'pointer'}}>
-                    <Link color="inherit" href={`/eatnow/mealpage/${data._id}`}>
-                    <div class="polaroid">
-                        <img className="lunchImage" src={data.mealImage} alt={'lunch_'+i} />
-                        <div class="caption">{data.mealName}</div>
-                    </div>   
-                    </Link>
-                </Grid>)}
-                {/* {this.state.data.map((data,i) =>)} */}
-
-                {/* <div>
+          {/* <div>
                 <Grid class="lunchOption">
                     <Link color="inherit" href="/mealpage">
                         <div class="polaroid">
@@ -273,12 +281,9 @@ export default class Lunch extends React.Component{
                         </div>
                     </Link>    
                 </Grid>
-                </div>  */}   
-                
-                
-                
-                </Grid>    
-            </div>
-        );
-    }
+                </div>  */}
+        </Grid>
+      </div>
+    );
+  }
 }

@@ -36,13 +36,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import MealPlanService from '../services/MealPlanService';
+import MealPlanService from '../Services/MealPlanService';
 import DateFnsUtils from '@date-io/date-fns';
-import OrderService from '../services/OrderService';
-import UserService from '../services/UserService';
+import OrderService from '../Services/OrderService';
+import UserService from '../Services/UserService';
 import MySnackbarContentWrapper from '../components/snackbar/SnackBar';
 import Snackbar from '@material-ui/core/Snackbar';
-import MealService from '../services/MealService';
+import MealService from '../Services/MealService';
 
 import {
   MuiPickersUtilsProvider,
