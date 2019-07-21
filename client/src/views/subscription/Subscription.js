@@ -60,13 +60,17 @@ export default class Subscription extends React.Component {
             <Header/>
              <Grid container spacing={0}>
                <Grid item xs={6}>
+               <Link color="inherit" href={`/eat/eatnow/`}>
                  <img className="eatnow" src={eatnow} alt="eatnow" onClick={this.handleMealService}/>
+               </Link>
                </Grid>
                <Grid item xs={6}>
+               <Link color="inherit" href={`/eat/subscription/`}>
                  <img className="subscribe" src={subs} alt="subscription" onClick={this.handleMealService}/>
+                </Link>
                </Grid>
              </Grid>
-             {this.state.eatnow ?
+             
                 <Grid container justify='center' alignItems= 'center' className="subscriptionSessions">
                     <Grid item xs={5}>
                         <Typography component="h1" variant="h6">
@@ -125,7 +129,7 @@ export default class Subscription extends React.Component {
                         {this.state.value === 2 && <TabContainer><Breakfast tab={this.state.value}/></TabContainer>}
                         {this.state.value === 3 && <TabContainer><Breakfast tab={this.state.value}/></TabContainer>}
                     </Grid> 
-                </Grid> : 'Eat Now' }
+                </Grid> 
            </div>
         );
     }

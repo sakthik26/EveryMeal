@@ -40,6 +40,8 @@ const port = process.env.PORT;
 const usersRoute = require("./routes/UserRoutes");
 const mealPlanRoute = require("./routes/MealPlanRoutes");
 const orderRoute = require("./routes/OrderRoutes")
+const mealsRoute = require("./routes/MealRoutes");
+const shoppingCartRoute = require("./routes/ShoppingCartRoutes");
 //require('./db/db')
 const mongoose = require("mongoose");
 const cors = require('cors')
@@ -55,6 +57,8 @@ app.use(express.json());
 app.use(usersRoute);
 app.use(mealPlanRoute);
 app.use(orderRoute);
+app.use(mealsRoute);
+app.use(shoppingCartRoute);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)

@@ -113,7 +113,7 @@ export default class OrderSummary extends React.Component{
       })
      
      promise.then( userId =>{
-        OrderService.registerOrder(userId,orderDetails).then((data) => {this.props.history.push('/eat');
+        OrderService.registerOrder(userId,orderDetails).then((data) => {this.props.history.push('/eat/eatnow');
         })}, function(error){
             
                 this.setState({

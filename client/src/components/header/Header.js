@@ -44,16 +44,12 @@ class Header extends React.Component {
         this.state = {
         value: ''
         };
-        this.handleChange = this.handleChange.bind(this)
+       
         this.logOut = this.logOut.bind(this)
         this.login = this.login.bind(this)
         this.signup = this.signup.bind(this)
     }
-    handleChange() {
-        this.setState({
-          value: '1'
-        });
-      }
+    
 
      logOut(){
         UserService.logout().then((data) => {
@@ -66,12 +62,12 @@ class Header extends React.Component {
       
      login(){
           window.location = "/login";
-          this.handleChange()
+         
       }
       
      signup(){
           window.location = "/signup";
-          this.handleChange()
+         
       }
 
     render() {
@@ -88,7 +84,7 @@ class Header extends React.Component {
                         <Tab label="Diet Consultation" />
                     </Tabs> */}
                    <MenuList className={classes.menulist}>
-                       <MenuItem className={classes.horizontalmenu} component={Link} to="/eat">
+                       <MenuItem className={classes.horizontalmenu} component={Link} to="/eat/eatnow">
                         Eat
                        </MenuItem>
                        <MenuItem className={classes.horizontalmenu} component={Link} to="/consultation">

@@ -1,0 +1,34 @@
+.root{
+    flex-grow: 1
+    
+}
+
+.root .eatnow, .root .subscribe{
+     min-width: 100%;
+     max-width: 100%;
+     cursor: pointer;
+}
+
+.eatnow .filter-block{
+    background-color: #fff;
+    width: 200px;
+    position: absolute;
+    right: 9%;
+    border-radius: 4px;
+    box-shadow: 0 4px 4px 2px rgba(19,19,19,.3);
+    border-top: none;
+    font-size: 14px;
+    padding: 30px 16px 16px;
+    text-align: left;
+    z-index:1
+    
+}
+
+.filter-block button{
+    float: right;
+}
+
+.filter-block .MuiTypography-body1{
+    font-size: 13px
+}
+

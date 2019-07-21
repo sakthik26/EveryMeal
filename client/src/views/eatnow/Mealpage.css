@@ -1,0 +1,122 @@
+.left{
+   float:left; 
+   width: 35%;
+   padding: 3rem;
+}
+
+.right{
+    float:right; 
+    margin: 3rem;
+    width: 80%;
+ }
+
+ .mealGrid{
+    display: block;
+ }
+
+ .override{
+     white-space: pre-wrap;
+ }
+
+.image{
+    border-radius: 2%;
+    width: 100%;
+    display:block;
+    
+}
+
+.macros table{
+    width: 100%;
+    text-align: center;
+    
+}
+
+.macrosT th, td{
+    width: 20%;
+}
+
+th{
+    font-weight: normal;
+}
+
+.macrosT td{
+    font-size: smaller;
+    color: #404040;
+    border: none;
+}
+
+
+/*
+Please write this with more class identifiers
+p{
+    font-size: calc(0.5vw + 0.5vh + 00.3vmin);
+} */
+
+.macros{
+    background-color: hsl(29, 100%, 95%);
+    border-radius: 5px;
+    border: 1px solid #ffe5cc;
+    padding: 5px;
+    overflow: auto;
+}
+
+/* .details-grid-parent{
+    position: absolute;
+    white-space: nowrap;
+    overflow: auto;
+}
+
+.details-grid-parent .card-content{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}   
+
+
+.details-grid-parent .meal-session{
+    margin-top: 9px;
+    flex-basis: 8em;
+}
+
+.details-grid-parent button{
+    margin: 2%;
+    float: left!important;
+}
+
+.details-upcoming-meals .details-upcoming-item{
+    flex-basis: 21em;
+}
+
+div.details-upcoming-meals{
+    margin-left: 11.5%
+}
+
+.details-upcoming-meals .details-upcoming-item .card-media{
+    max-width: 400px;
+    height: 150px;
+} */
+
+.filter-button{
+    text-align: right;
+}
+
+.nutritionCard{
+    word-wrap: break-word;
+}
+
+.button{
+    padding: 1rem;
+    background-color: blue;
+}
+/* 
+.MuiPaper-elevation1{
+    box-shadow: none!important;
+} */
+
+.MuiButtonBase-root .MuiButton-root .MuiButton-contained .MuiButton-containedSecondary{
+    float: left!important;
+}
+
+.form{
+    margin-top: 2rem;
+}
