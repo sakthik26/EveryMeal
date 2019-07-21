@@ -1,9 +1,28 @@
+"use strict";
 import React from 'react';
+import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { Card, CardContent, CardActions } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import { FormControl, Card, CardContent, CardActions, CardActionArea } from '@material-ui/core';
+import CardMedia from '@material-ui/core/CardMedia';
 import Radio from '@material-ui/core/Radio';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import Header from '../components/header/Header';
 import breakfast_image1 from '../images/Breakfast_option1.png'
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -17,15 +36,21 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import MealPlanService from '../Services/MealPlanService';
+import MealPlanService from '../services/MealPlanService';
 import DateFnsUtils from '@date-io/date-fns';
-import OrderService from '../Services/OrderService';
-import UserService from '../Services/UserService';
+import OrderService from '../services/OrderService';
+import UserService from '../services/UserService';
+import MySnackbarContentWrapper from '../components/snackbar/SnackBar';
+import Snackbar from '@material-ui/core/Snackbar';
+import MealService from '../services/MealService';
+
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+
+
 
 export default class OrderSummary extends React.Component{
     constructor(props){
@@ -38,11 +63,13 @@ export default class OrderSummary extends React.Component{
             stateValue:'',
             zipcode:'',
             total:'',
-            open:false
+            open:false,
+            openSnack: false,
         };
         this.handleStartingDate = this.handleStartingDate.bind(this)
         this.handleClickOpen = this.handleClickOpen.bind(this)
         this.handleClose = this.handleClose.bind(this)
+        this.handleSnackClose = this.handleSnackClose.bind(this)
         this.handleTimeSlot = this.handleTimeSlot.bind(this);
         this.changeInputAddress = this.changeInputAddress.bind(this);
         this.changeInputCity = this.changeInputCity.bind(this);
@@ -57,16 +84,32 @@ export default class OrderSummary extends React.Component{
             loading:true
         })
 
-        MealPlanService.getMealPlanInfo(this.props.match.params.id).then((data)=>{
-            this.setState({
-                data: [...data],
-                loading:false
+
+        if(this.props.location.state.subscription){
+
+                MealPlanService.getMealPlanInfo(this.props.match.params.id).then((data)=>{
+                    this.setState({
+                        data: [...data],
+                        loading:false
+                    })
+                }).catch((e)=>{
+                    this.setState({
+                        error:e
+                    })
+                })
+        }
+        else{
+            MealService.getMealInfo(this.props.match.params.id).then((data)=>{
+                this.setState({
+                    mealData: [...data],
+                    loading:false
+                })
+            }).catch((e)=>{
+                this.setState({
+                    error:e
+                })
             })
-         }).catch((e)=>{
-             this.setState({
-                 error:e
-             })
-         })
+        }
         
     }
 
@@ -82,7 +125,10 @@ export default class OrderSummary extends React.Component{
         timeslot: this.state.time,
         ordertype: (this.props.location.state && this.props.location.state.subscription) ? "subscription" : "onetime",
         productid: this.props.match.params.id,
-        total: this.state.total
+        total: this.state.total,
+        mealquantity: (this.props.location.state.quantity) ? this.props.location.state.quantity : 1,
+        portionsize: (this.props.location.state.portion) ? this.props.location.state.portion: 1,
+        additionalcomments: (this.props.location.state.comments) ? this.props.location.state.comments: '',
       }
      
       var promise = new Promise((resolve,reject) => {
@@ -94,13 +140,26 @@ export default class OrderSummary extends React.Component{
       })
      
      promise.then( userId =>{
-        OrderService.registerOrder(userId,orderDetails).then((data) => {this.props.history.push('/eat/eatnow');
+        OrderService.registerOrder(userId,orderDetails).then((data) => {
+            var self = this;
+            this.setState({openSnack:true})
+            setTimeout(function(){ self.props.history.push('/eat/eatnow')}, 2000);
+           
         })}, function(error){
             
                 this.setState({
                     error:error
                 })
         })
+     }
+
+     handleSnackClose(e,reason){
+        if (reason === 'clickaway') {
+            return;
+          }
+      
+          this.setState({openSnack:false});
+
      }
     changeInputAddress(e){
         this.setState({address: e.target.value})
@@ -140,10 +199,24 @@ export default class OrderSummary extends React.Component{
                           this.state.data[0].mealsession === 'Lunch' ? 
                           ["12:15 - 01:00 PM","01:00 - 01:45 PM","1:45 - 02:30 PM","02:30 - 03:15 PM"] : 
                           ["07:15 - 08:00 PM","08:00 - 08:45 PM","8:45 - 09:30 PM","09:30 - 10:15 PM"]
-        
-      
+        this.state.image = this.state.data[0].image ;
         }
-        const {address,zipcode,stateValue,city,time,startingDate,total} = this.state;
+        if(this.state.mealData){
+          var mealplan = `${this.state.mealData[0].mealName} -  ${this.state.mealData[0].mealSession}`;
+          var mealComments = this.props.location.state.comments;
+          var mealQuantity ='Qt: '+ this.props.location.state.quantity + ' Portion: '+this.props.location.state.portion ;
+          this.state.total = this.state.mealData[0].mealPrice
+          var totalInEuros = this.state.total.toString().replace(/^/,'€ ');
+          var delivery = 10;
+          var timeSlots = this.state.mealData[0].mealSession === 'Breakfast' ? 
+                          ["07:30 - 08:15 AM","08:15 - 09:00 AM","09:00 - 09:45 AM","09:45 - 10:30 AM"] : 
+                          this.state.mealData[0].mealSession === 'Lunch' ? 
+                          ["12:15 - 01:00 PM","01:00 - 01:45 PM","1:45 - 02:30 PM","02:30 - 03:15 PM"] : 
+                          ["07:15 - 08:00 PM","08:00 - 08:45 PM","8:45 - 09:30 PM","09:30 - 10:15 PM"]
+
+        this.state.image = this.state.mealData[0].mealImage;
+        }
+        const {address,zipcode,stateValue,city,time,startingDate,total,openSnack} = this.state;
         
         if(this.state.loading){
             
@@ -156,23 +229,33 @@ export default class OrderSummary extends React.Component{
         return(
             <div>
             <Header/>
-             <Grid container justify='center' spacing={2}>
+             <Grid className='order-summary-parent' container justify='center' spacing={2}>
                     <Grid item xs={8} sm={4}>
                         <Typography component="h1" variant="h6">
                             Order Summary
                             
                         </Typography>
-                        <img className="sub-detail" src={this.state.data[0].image} alt="SubscriptionDetail" />
+                        <img className="sub-detail" className='summary-image' src={this.state.image} alt="SubscriptionDetail" />
                         <InputBase className="summary-title"
                                         
                                         defaultValue= {mealplan}
                                         inputProps={{ 'aria-label': 'naked',readOnly: true }}
                                     />
                         <InputBase
-                            
+                            className="summary-title"
                             defaultValue={totalInEuros}
                             inputProps={{ 'aria-label': 'naked',readOnly: true }}
                         />
+                        <InputBase
+                            className="summary-title"
+                            defaultValue={mealQuantity}
+                            inputProps={{ 'aria-label': 'naked',readOnly: true }}
+                        />    
+                        <InputBase
+                            className="summary-title"
+                            defaultValue={mealComments}
+                            inputProps={{ 'aria-label': 'naked',readOnly: true }}
+                        />        
                     </Grid>
                     
                     <Grid item xs={8} sm={5} >
@@ -339,8 +422,23 @@ export default class OrderSummary extends React.Component{
                                 <Button variant="outlined" className = "pay" color="secondary" disabled = {!(address && startingDate && time)} onClick={this.handlePay}>
                                     Pay
                                 </Button> 
-
+                     
                         </form>    
+                        <Snackbar
+                            anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                            }}
+                            open={openSnack}
+                            autoHideDuration={6000}
+                            onClose={this.handleSnackClose}
+                        >
+                            <MySnackbarContentWrapper
+                            onClose={this.handleSnackClose}
+                            variant="success"
+                            message="Payment is Successfull"
+                            />
+                        </Snackbar>
                     </Grid>
              </Grid>
              

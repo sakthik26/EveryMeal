@@ -40,3 +40,8 @@ div.details-upcoming-meals{
 .filter-button{
     text-align: right;
 }
+
+.details-grid-parent .meal-image{
+    max-width: 60%;
+    min-width: 75%;
+}

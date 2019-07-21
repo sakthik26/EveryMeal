@@ -1,7 +1,12 @@
+
+.order-summary-parent{
+    margin-top:2% !important
+}
 .summary-form-root{
     flex-wrap: nowrap;
     flex-direction: column;
     display: flex;
+
 }
 
 .summary-form-control{
@@ -29,6 +34,7 @@ align-self: flex-end;
     display: block!important;
 }
 
+
 .summary-form-root .order-total{
     margin-top: 10%;
     border-top: 1px solid #949494;
@@ -36,4 +42,9 @@ align-self: flex-end;
 
 .order-total .pay-amount{
    text-align: right;
+}
+
+.order-summary-parent .summary-image{
+    max-width: 70%;
+    min-width: 70%;
 }

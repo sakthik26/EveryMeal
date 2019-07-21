@@ -22,23 +22,23 @@ export default class Breakfast extends React.Component{
         this.setState({
             loading:true
         })
-        
+        var session = ''
         if(this.props.tab === 0){
             this.setState({session: 'Breakfast'})
+            session='Breakfast'
         }
         else if(this.props.tab === 1){
             this.setState({session: 'Lunch'})
+            session='Lunch'
        }
        else if(this.props.tab === 2){
-        this.setState({session: 'Snacks'})
-       }
-       else if(this.props.tab === 3){
         this.setState({session: 'Dinner'})
+        session='Dinner'
        }
 
        
 
-        MealPlanService.getMealPlansList(this.state.session).then((data)=>{
+        MealPlanService.getMealPlansList(session).then((data)=>{
            this.setState({
                data: [...data],
                loading:false
@@ -71,7 +71,7 @@ export default class Breakfast extends React.Component{
                         <img className="breakfast" src={data.image} alt={'bf_'+i} />
                         <Typography>
                         <span>Starting:</span>
-                        <span style={{float:'right'}}> {data.startingprice}/meal </span>
+                        <span style={{float:'right'}}>€ {data.startingprice}/meal </span>
                         </Typography>
                       </Link>
                     </Grid>)} 

@@ -1,5 +1,6 @@
 const express = require('express');
 const MealPlan = require('../models/MealPlan')
+const Meal = require('../models/MealModel')
 //const auth = require('../middleware/auth')
 
 const router = express.Router();
@@ -20,6 +21,17 @@ router.get('/eat/subscribe',async function(req,res){
      
       var mealsess = req.query.session;
       MealPlan.find({mealsession:mealsess}).exec()
+         .then(mealplans => res.status(200).json(mealplans))
+         .catch(error => res.status(500).json({
+            error: 'Internal server error',
+            message: error.message
+         }))
+})
+
+router.get('/eat/subscription/meal',async function(req,res){
+    var mealSess = req.query.session;
+    var mealType = req.query.type;
+    Meal.find({mealSession:mealSess,mealPlan:mealType}).exec()
          .then(mealplans => res.status(200).json(mealplans))
          .catch(error => res.status(500).json({
             error: 'Internal server error',

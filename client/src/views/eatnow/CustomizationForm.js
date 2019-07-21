@@ -15,18 +15,9 @@ export class CustomizationForn extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleChange1 = this.handleChange1.bind(this);
-        this.state = {value:'1',valu2:'1'}
+      
     }
 
-    handleChange(event){
-        this.setState({value: event.target.value})
-    }
-
-    handleChange1(event){
-        this.setState({valu2: event.target.value})
-    }
 
 
     render() {
@@ -37,11 +28,12 @@ export class CustomizationForn extends React.Component {
                         <div className="option">
                             <InputLabel required margin="dense" shrink>Portion size</InputLabel>
                             <Select
-                            value={this.state.value}
-                            onChange={this.handleChange}
+                            value={this.props.portion}
+                            onChange={this.props.handlePortion}
                             >
-                                <MenuItem value={1}>&#189;</MenuItem>
-                                <MenuItem value={2}>1</MenuItem>
+                                
+                                <MenuItem value={1}>1</MenuItem>
+                                <MenuItem value={0.5}>0.5</MenuItem>
                             </Select> 
                         </div>            
                     </FormControl>
@@ -50,8 +42,8 @@ export class CustomizationForn extends React.Component {
                     <div className="option">
                         <InputLabel required margin="dense" shrink>Quantity</InputLabel>
                         <Select
-                        value={this.state.valu2}
-                        onChange={this.handleChange1}
+                        value={this.props.quantity}
+                        onChange={this.props.handleQuantity}
                         >
                             <MenuItem value={1}>1</MenuItem>
                             <MenuItem value={2}>2</MenuItem>
@@ -67,6 +59,8 @@ export class CustomizationForn extends React.Component {
                         label="Additional comments"
                         placeholder="Let us know what you need!"
                         multiline
+                        value={this.props.comments}
+                        onChange={this.props.handleComments}
                         margin="normal"
                         variant="outlined"
                         rows="3"

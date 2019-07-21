@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import './Eatnow.css'
 
 import './Lunch.css';
-import MealService from '../../Services/MealService';
+import MealService from '../../services/MealService';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 

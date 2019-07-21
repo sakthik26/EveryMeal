@@ -40,11 +40,12 @@ const routing = (
         <Route path="/dashboard" component= {Dashboard} />
         <Route path="/account" component= {MyAccount} />
         <PrivateRoute path="/checkout/:id" component= {OrderSummary} />
+        <PrivateRoute path="/checkoutmeal/:id" component= {OrderSummary} />
         <Route exact path="/subscription/details/:id" component= {SubscriptionDetails} />
         <Route path="/eat/subscription" component= {Subscription} />
         <Route exact path="/eat/eatnow" component= {Eatnow} />
         <Route exact path="/eatnow/mealpage/:id" component= {Mealpage} />
-        {/* <Route exact path="/eatnowpage2" component= {Eatnow2} /> */}
+        <Route exact path="/eatnowpage2" component= {Eatnow2} />
       </div>
     </Router>
   </Provider> 

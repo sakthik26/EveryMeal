@@ -13,6 +13,7 @@ import breakfast_image2 from '../../images/Breakfast_option2.png'
 import breakfast_image3 from '../../images/Breakfast_option3.png'
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import MealPlanService from '../../services/MealPlanService';
+import MealService from '../../services/MealService';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class SubscriptionDetails extends React.Component{
@@ -22,7 +23,8 @@ export default class SubscriptionDetails extends React.Component{
             selectedValue: 'Monthly',
             loading: false,
             data: [],
-            error:''
+            error:'',
+            mealData:[]
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -32,16 +34,32 @@ export default class SubscriptionDetails extends React.Component{
             loading:true
         })
 
-        MealPlanService.getMealPlanInfo(this.props.match.params.id).then((data)=>{
-            this.setState({
-                data: [...data],
-                loading:false
+        var promise = new Promise((resolve,reject) => {
+            MealPlanService.getMealPlanInfo(this.props.match.params.id).then((data)=>{
+                this.setState({
+                    data: [...data],
+                    loading:false
+                })
+                resolve(data);
+            }).catch((e)=>{
+                reject(e);
             })
-         }).catch((e)=>{
-             this.setState({
-                 error:e
-             })
-         })
+        })
+
+
+     
+     promise.then( data =>{
+        var self = this;
+        if(data.length>0){
+            var mealSession = data[0].mealsession;
+            var mealType = data[0].mealplantype
+            MealPlanService.getMealType(mealSession,mealType).then((data) => {
+            self.setState({mealData:data})
+                
+            
+            })}}, function(error){
+                
+            })
         
     }
 
@@ -51,7 +69,7 @@ export default class SubscriptionDetails extends React.Component{
 
     
     render(){
-
+       const {data,mealData} = this.state;
         if(this.state.loading){
             
             return (
@@ -65,7 +83,7 @@ export default class SubscriptionDetails extends React.Component{
             <Header/>
              <Grid className='details-grid-parent' container justify='center' spacing={2}>
                     <Grid item className='details-grid-item' xs={8} sm={4}>
-                        <img className="sub-detail" src={this.state.data[0].image} alt="SubscriptionDetail" />
+                        <img className="sub-detail" className="meal-image" src={this.state.data[0].image} alt="SubscriptionDetail" />
                     </Grid>
                     <Grid item xs={8} sm={5} >
                         <Breadcrumbs separator="›" aria-label="Breadcrumb">
@@ -146,106 +164,34 @@ export default class SubscriptionDetails extends React.Component{
                     <Grid item className='' xs={8} sm={4}>
                     </Grid>
             </Grid> 
+
             <Grid className='details-upcoming-meals' container spacing = {4}>
+            {this.state.mealData.map((data,i) => 
+                    
                          <Grid item className='details-upcoming-item'> 
+                          <Link color="inherit" href={`/eatnow/mealpage/${data._id}`}>
                             <Card>
                                 <CardActionArea>
                                   <CardMedia
                                       className='card-media'
-                                      image = {breakfast_image1}
+                                      image = {data.mealImage}
                                       title = "Upcoming Meal"
                                    />
                                  <CardContent>
                                     <Typography gutterBottom component="h6">
-                                    Gobi-Methi Paranthas, Curd & Chutney
+                                    {data.mealName}
                                     </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">
-                                        Start your day right with our wholesome whole-wheat vegetable paranthas made with cauliflower, carrots and a hint of ginger. 
+                                    {data.mealDescription}
                                     </Typography>
                                  </CardContent>
                                 </CardActionArea>
                                 <CardActions>
-                                    <Button size="small" color="primary">
-                                     Try for € 19
-                                    </Button>
                                 </CardActions>
-                            </Card>
-                         </Grid>
-                         <Grid item className='details-upcoming-item'> 
-                            <Card>
-                                <CardActionArea>
-                                  <CardMedia
-                                      className='card-media'
-                                      image = {breakfast_image2}
-                                      title = "Upcoming Meal1"
-                                   />
-                                 <CardContent>
-                                    <Typography gutterBottom component="h6">
-                                    Gobi-Methi Paranthas, Curd & Chutney
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        Start your day right with our wholesome whole-wheat vegetable paranthas made with cauliflower, carrots and a hint of ginger. 
-                                    </Typography>
-                                 </CardContent>
-                                </CardActionArea>
-                                <CardActions>
-                                    <Button size="small" color="primary">
-                                     Try for € 19
-                                    </Button>
-                                </CardActions>
-                            </Card>
-                         </Grid>
-                         <Grid item className='details-upcoming-item'> 
-                            <Card>
-                                <CardActionArea>
-                                  <CardMedia
-                                      className='card-media'
-                                      image = {breakfast_image3}
-                                      title = "Upcoming Meal1"
-                                   />
-                                 <CardContent>
-                                    <Typography gutterBottom component="h6">
-                                    Gobi-Methi Paranthas, Curd & Chutney
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        Start your day right with our wholesome whole-wheat vegetable paranthas made with cauliflower, carrots and a hint of ginger. 
-                                    </Typography>
-                                 </CardContent>
-                                </CardActionArea>
-                                <CardActions>
-                                    <Button size="small" color="primary">
-                                     Try for € 19
-                                    </Button>
-                                </CardActions>
-                            </Card>
-                         </Grid>
-                         <Grid item className='details-upcoming-item'> 
-                            <Card>
-                                <CardActionArea>
-                                  <CardMedia
-                                      className='card-media'
-                                      image = {breakfast_image2}
-                                      title = "Upcoming Meal1"
-                                   />
-                                 <CardContent>
-                                    <Typography gutterBottom component="h6">
-                                    Gobi-Methi Paranthas, Curd & Chutney
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        Start your day right with our wholesome whole-wheat vegetable paranthas made with cauliflower, carrots and a hint of ginger. 
-                                    </Typography>
-                                 </CardContent>
-                                </CardActionArea>
-                                <CardActions>
-                                    <Button size="small" color="primary">
-                                     Try for € 19
-                                    </Button>
-                                </CardActions>
-                            </Card>
-                         </Grid>
-                         
-                         
-             </Grid>
+                            </Card></Link>
+                   </Grid> )}
+                             
+              </Grid> 
             </div>
         )
     }

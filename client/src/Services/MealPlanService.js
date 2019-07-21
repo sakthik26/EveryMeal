@@ -23,5 +23,16 @@ export default class MealPlanService {
             });
         });
     }
+
+    static getMealType(session,type){
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${MealPlanService.baseURL()}/eat/subscription/meal?session=`+session+`&type=`+type, function(data) {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+    
     
 }

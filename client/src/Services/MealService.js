@@ -18,6 +18,7 @@ export default class MealService {
             });
         });
     }
+    
 
     static getMealInfo(id){
         return new Promise((resolve, reject) => {
@@ -28,4 +29,6 @@ export default class MealService {
             });
         });
     }
+
+
 }

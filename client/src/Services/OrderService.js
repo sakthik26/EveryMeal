@@ -17,7 +17,10 @@ export default class OrderService {
                 timeslot:orderDetails.timeslot,
                 address:orderDetails.address,
                 startingdate:orderDetails.startingdate,
-                total:orderDetails.total
+                total:orderDetails.total,
+                quantity:orderDetails.mealquantity,
+                portionsize: orderDetails.portionsize,
+                additionalcomments: orderDetails.additionalcomments
             }, function(data) {
                 resolve(data);
             }, function(textStatus) {

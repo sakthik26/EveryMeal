@@ -19,13 +19,13 @@ const mealPlanSchema = mongoose.Schema({
    startingprice:{
        type:Number,
        required: true,
-       min: 10
+       min: 8
    },
    description:{
        type:String,
        required: true,
        minlength: 3,
-       maxlength: 300
+       maxlength: 600
    },
    image:{
        type:String,

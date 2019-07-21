@@ -76,10 +76,10 @@ router.get('/user/me', auth, async function(req, res) {
     res.send(req.user)
 })
 
-router.get('/user/eat', auth, async function(req, res) {
-    // View logged in user profile
-    res.send(req.user)
-})
+// router.get('/user/eat', auth, async function(req, res) {
+//     // View logged in user profile
+//     res.send(req.user)
+// })
 
 router.post('/user/logout', auth, async function(req,res){
     try{

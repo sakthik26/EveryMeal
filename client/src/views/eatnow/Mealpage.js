@@ -5,8 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { typography } from '@material-ui/system';
 import './Mealpage.css'
 import Header from '../../components/header/Header';
-import CustomizationForm from '../../components/forms/CustomizationForm.js'
-import MealService from '../../Services/MealService';
+import CustomizationForm from './CustomizationForm.js'
+import MealService from '../../services/MealService';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class SubscriptionDetails extends React.Component{
@@ -16,9 +16,15 @@ export default class SubscriptionDetails extends React.Component{
             selectedValue: 'a',
             loading: false,
             data: [],
-            error:''
+            error:'',
+            portion:1,
+            quantity:1,
+            comments: ''
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handlePortion= this.handlePortion.bind(this);
+        this.handleComments= this.handleComments.bind(this);
+        this.handleQunatity = this.handleQunatity.bind(this);
     }
 
     componentWillMount(){
@@ -37,6 +43,16 @@ export default class SubscriptionDetails extends React.Component{
              })
          })
         
+    }
+    handleComments(event){
+        this.setState({comments: event.target.value})
+    }
+    handlePortion(event){
+        this.setState({portion: event.target.value})
+    }
+
+    handleQunatity(event){
+        this.setState({quantity: event.target.value})
     }
 
     handleChange(event){
@@ -121,12 +137,12 @@ export default class SubscriptionDetails extends React.Component{
                         </Grid>
             
                         <Grid className='form'>
-                            <CustomizationForm></CustomizationForm>
-                            <Button variant="contained" color="secondary">Try Now!</Button>
-                            <Button variant="contained" color="secondary" >
+                            <CustomizationForm portion={this.state.portion} comments={this.state.comments} quantity={this.state.quantity} handlePortion={this.handlePortion} handleQuantity={this.handleQunatity} handleComments= {this.handleComments}></CustomizationForm>
+                            <Button variant="contained" color="secondary" onClick= {() => this.props.history.push('/checkoutmeal/'+this.state.data[0]._id,{portion: this.state.portion,quantity:this.state.quantity,comments:this.state.comments})}>Order Now!</Button>
+                            {/* <Button variant="contained" color="secondary" >
                                 Add to cart
                                 <Icon color="white">add_circle</Icon>
-                            </Button>
+                            </Button> */}
                         </Grid>
                     </Grid>
              </Grid>
